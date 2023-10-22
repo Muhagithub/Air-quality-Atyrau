@@ -1,0 +1,2088 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+      crossorigin="anonymous"
+    />
+
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Ауа райы</title>
+    <link rel="stylesheet" href="{% static 'weather-page.css' %}" />
+    <style>
+      .text-atyrau-weather {
+       font-size: 150px;
+      }
+
+    </style>
+  </head>
+  <body>
+    
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+      crossorigin="anonymous"
+    ></script>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container">
+        <a class="navbar-brand p-0" href="#">
+          <img
+            src="{% static 'air_quality_logo.png' %}"
+            width="50"
+            alt="logo"
+          />
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link " aria-current="page" href="/">Басты бет</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="weather-atyrau">Ауа райы</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <h1 class="text-atyrau-weather">Атырау</h1>
+        </div>
+        <div class="col">
+          <h1 style="font-size: 150px;">{{temp}}</h1>
+        </div>
+        <div class="col">
+          {% if description == 'Шамалы бұлт' %}
+            <img src="{% static 'weather_logos/немного облачно.png'%}" alt="немного облачно" width="180" style="margin-top: 10px;">
+          {% endif %}
+          {% if description == 'Аспан ашық' %}
+            <img src="{% static 'weather_logos/Солнечно.png' %}" alt="Солнечно" width="180" style="margin-top: 10px;">
+          {% endif %}
+          {% if description == 'Айнымалы бұлттар' %}
+            <img src="{% static 'weather_logos/облачно с происнениями.png' %}" alt="Солнечно с происненеями" width="180" style="margin-top: 10px;">
+          {% endif %}
+          {% if description == 'Жыртылған бұлттар' %}
+            <img src="{% static 'weather_logos/Облачно.png' %}" alt="Облачно" width="180" style="margin-top: 10px;">
+          {% endif %}
+          {% if description == 'Қатты жаңбыр' %}
+            <img src="{% static 'weather_logos/дождь.png' %}" alt="Ливень" width="180" style="margin-top: 10px;">
+          {% endif %}
+          {% if description == 'Жаңбыр' %}
+            <img src="{% static 'weather_logos/дождь с произнеями.png' %}" alt="Дождь" width="180" style="margin-top: 10px;">
+          {% endif %}
+          {% if description == 'Найзағай' %}
+            <img src="{% static 'weather_logos/гроза.png' %}" alt="Гроза" width="180" style="margin-top: 10px;">
+          {% endif %}
+          {% if description == 'Қар' %}
+            <img src="{% static 'weather_logos/Снег.png' %}" alt="Снег" width="180" style="margin-top: 10px;">
+          {% endif %}
+
+        </div>
+      </div>
+      <h1 style="font-size: 60px;">{{description}}</h1>
+      <div class="row row-cols-1" style="margin-top: 70px; ">
+        <div class="col ">
+          <div class="row">
+            <div class="col">
+              <h1 style="font-size: 37px;">Желдің жылдамдығы - {{wind}}м/с</h1>
+            </div>
+            <div class="col">
+              <img src="{% static 'weather_parameters/wind.png' %}" alt="wind" width="60" style="margin-left:-58px; margin-top: -5px;">
+            </div>
+          </div>
+        </div>
+        <div class="col" style="margin-top: 20px;">
+          <div class="row">
+            <div class="col">
+              <h1 style="font-size: 37px;">Ылғалдылық - {{humidity}}%</h1>
+            </div>
+            <div class="col">
+              <img src="{% static 'weather_parameters/humidity.png' %}" alt="humidity" width="60" style="margin-left:-230px; margin-top: -10px;">
+            </div>
+          </div>
+        </div>
+        <div class="col" style="margin-top: 20px;">
+          <div class="row">
+            <div class="col-md-6">
+              <h1 style="font-size: 37px;">Қысымдылық - {{pressure}}</h1>
+
+            </div>
+            <div class="col" >
+              <img src="{% static 'weather_parameters/barometer-.png' %}" alt="wind" width="70" style="margin-left:-55px; margin-top: -10px;" >
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <h1 style="font-size: 70px; margin-top: 70px;">Күннің шығуы/батуы</h1>
+      <div class="row">
+        <div class="col">
+
+          <div style="margin-top: 30px; width: 350px; height: 300px; background-color: rgb(231, 230, 230); border-radius: 10px;">      
+            <div class="container">
+              <div class="row row-cols-1" >
+                <div class="col">
+                  <img src="{% static 'weather_logos/sunrise.png' %}" alt="sunrise" width="180">
+                </div>
+                <div class="col">
+                  <h1 >Күннің шығуы</h1>
+                </div>
+                <div class="col">
+                  <h1>{{sunrise}}</h1>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+
+          <div style="margin-top: 30px; width: 350px; height: 300px; background-color: rgb(231, 230, 230); border-radius: 10px;">
+      
+            <div class="container">
+              <div class="row row-cols-1" >
+                <div class="col">
+                  <img src="{% static 'weather_logos/sunset.png' %}" alt="sunrise" width="180">
+                </div>
+                <div class="col">
+                  <h1 >Күннің батуы</h1>
+                </div>
+                <div class="col">
+                  <h1>{{sunset}}</h1>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container" style="margin-top: 70px;">
+      <h1 style="font-size: 70px;">Ауа райы болжамы</h1>
+      <h1 style="font-size: 50px;">Бүгін</h1>
+      {% if dt_1 == '2:00' %}
+        <div style="width: 135px; height: 135px; background-color: rgb(231, 230, 230); border-radius: 10px;">
+          <div class="container">
+
+            <div class="row-cols-1">
+              <div class="col">
+                <div class="row">
+                  <div class="col-5" >
+                  {% if description_1 == 'few clouds' %}
+                    <img src="{% static 'weather_logos/немного облачно.png'%}" alt="немного облачно" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_1 == 'clear sky' %}
+                    <img src="{% static 'weather_logos/Солнечно.png' %}" alt="Солнечно" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_1 == 'scattered clouds' %}
+                    <img src="{% static 'weather_logos/облачно с происнениями.png' %}" alt="Солнечно с происненеями" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_1 == 'broken clouds' or description_1 == 'overcast clouds' %}
+                    <img src="{% static 'weather_logos/Облачно.png' %}" alt="Облачно" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_1 == 'shower rain' %}
+                    <img src="{% static 'weather_logos/дождь.png' %}" alt="Ливень" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_1 == 'rain' or description_1 == 'light rain' or description_1 == 'moderate rain' or description_1 == 'heavy intensity rain' or description_1 == 'very heavy rain' or description == 'extreme rain' %}
+                    <img src="{% static 'weather_logos/дождь с произнеями.png' %}" alt="Дождь" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_1 == 'thunderstorm' %}
+                    <img src="{% static 'weather_logos/гроза.png' %}" alt="Гроза" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_1 == 'snow' %}
+                    <img src="{% static 'weather_logos/Снег.png' %}" alt="Снег" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  </div>
+                  <div class="col" style="margin-top: 20px;">
+                    <h1 style="font-size: 27px;">+{{temp_1}}</h1>
+                  </div>
+                    
+                </div> 
+      
+                    
+                  
+                </div>
+              </div>
+            
+              <div class="col"  >
+                <h1 style="font-size: 15px;">Жел жлд:{{wind_1}}м/с</h1>
+              </div>
+              <div class="col">
+                <h1 style="margin-top: -10px;">2:00</h1>
+              </div>
+            </div>
+          </div> 
+        </div>
+        <div style="width: 135px; height: 135px; background-color: rgb(231, 230, 230); border-radius: 10px; margin-top: -135px; margin-left: 200px;">
+          <div class="container">
+
+            <div class="row-cols-1">
+              <div class="col">
+                <div class="row">
+                  <div class="col-5" >
+                  {% if description_2 == 'few clouds' %}
+                    <img src="{% static 'weather_logos/немного облачно.png'%}" alt="немного облачно" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_2 == 'clear sky' %}
+                    <img src="{% static 'weather_logos/Солнечно.png' %}" alt="Солнечно" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_2 == 'scattered clouds' %}
+                    <img src="{% static 'weather_logos/облачно с происнениями.png' %}" alt="Солнечно с происненеями" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {%  if description_2 == 'broken clouds' or description_2 == 'overcast clouds' %}
+                    <img src="{% static 'weather_logos/Облачно.png' %}" alt="Облачно" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_2 == 'shower rain' %}
+                    <img src="{% static 'weather_logos/дождь.png' %}" alt="Ливень" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_2 == 'rain' or description_2 == 'light rain' or description_2 == 'moderate rain' or description_2 == 'heavy intensity rain' or description_2 == 'very heavy rain' or description_2 == 'extreme rain'   %}
+                    <img src="{% static 'weather_logos/дождь с произнеями.png' %}" alt="Дождь" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_2 == 'thunderstorm' %}
+                    <img src="{% static 'weather_logos/гроза.png' %}" alt="Гроза" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_2 == 'snow' %}
+                    <img src="{% static 'weather_logos/Снег.png' %}" alt="Снег" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  </div>
+                  <div class="col" style="margin-top: 20px;">
+                    <h1 style="font-size: 27px;">+{{temp_2}}</h1>
+                  </div>
+                    
+                </div> 
+      
+                    
+                  
+                </div>
+              </div>
+              
+              <div class="col">
+                <h1 style="font-size: 15px;">Жел жлд:{{wind_2}}м/с</h1>
+              </div>
+
+              <div class="col">
+                <h1 style="margin-top: -10px;">5:00</h1>
+              </div>
+            </div>
+          </div> 
+        </div>
+        <div style="width: 135px; height: 135px; background-color: rgb(231, 230, 230); border-radius: 10px; margin-top: -135px; margin-left: 350px;">
+          <div class="container">
+
+            <div class="row-cols-1">
+              <div class="col">
+                <div class="row">
+                  <div class="col-5" >
+                  {% if description_3 == 'few clouds' %}
+                    <img src="{% static 'weather_logos/немного облачно.png'%}" alt="немного облачно" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_3 == 'clear sky' %}
+                    <img src="{% static 'weather_logos/Солнечно.png' %}" alt="Солнечно" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_3 == 'scattered clouds' %}
+                    <img src="{% static 'weather_logos/облачно с происнениями.png' %}" alt="Солнечно с происненеями" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_3 == 'broken clouds' or description_3 == 'overcast clouds' %}
+                    <img src="{% static 'weather_logos/Облачно.png' %}" alt="Облачно" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_3 == 'shower rain' %}
+                    <img src="{% static 'weather_logos/дождь.png' %}" alt="Ливень" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_3 == 'rain' or description_3 == 'light rain' or description_3 == 'moderate rain' or description_3 == 'heavy intensity rain' or description_3 == 'very heavy rain' or description_3 == 'extreme rain' %}
+                    <img src="{% static 'weather_logos/дождь с произнеями.png' %}" alt="Дождь" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_3 == 'thunderstorm' %}
+                    <img src="{% static 'weather_logos/гроза.png' %}" alt="Гроза" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_3 == 'snow' %}
+                    <img src="{% static 'weather_logos/Снег.png' %}" alt="Снег" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  <div class="col" style="margin-top: 20px;">
+                    <h1 style="font-size: 27px;">+{{temp_3}}</h1>
+                  </div>
+                    
+                </div> 
+      
+                    
+                  
+                </div>
+              </div>
+              
+              <div class="col" >
+                <h1 style="font-size: 15px;">Жел жлд:{{wind_3}}м/с</h1>
+              </div>
+              <div class="col">
+                <h1 style="margin-top: -10px;">8:00</h1>
+              </div>
+            </div>
+          </div> 
+        </div>
+        <div style="width: 135px; height: 135px; background-color: rgb(231, 230, 230); border-radius: 10px; margin-top: -135px; margin-left: 500px;">
+          <div class="container">
+
+            <div class="row-cols-1">
+              <div class="col">
+                <div class="row">
+                  <div class="col-5" >
+                  {% if description_4 == 'few clouds' %}
+                    <img src="{% static 'weather_logos/немного облачно.png'%}" alt="немного облачно" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_4 == 'clear sky' %}
+                    <img src="{% static 'weather_logos/Солнечно.png' %}" alt="Солнечно" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_4 == 'scattered clouds' %}
+                    <img src="{% static 'weather_logos/облачно с происнениями.png' %}" alt="Солнечно с происненеями" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_4 == 'broken clouds' or description_4 == 'overcast clouds' %}
+                    <img src="{% static 'weather_logos/Облачно.png' %}" alt="Облачно" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_4 == 'shower rain' %}
+                    <img src="{% static 'weather_logos/дождь.png' %}" alt="Ливень" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_4 == 'rain' or description_4 == 'light rain' or description_4 == 'moderate rain' or description_4 == 'heavy intensity rain' or description_4 == 'very heavy rain' or description_4 == 'extreme rain' %}
+                    <img src="{% static 'weather_logos/дождь с произнеями.png' %}" alt="Дождь" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_4 == 'thunderstorm' %}
+                    <img src="{% static 'weather_logos/гроза.png' %}" alt="Гроза" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_4 == 'snow' %}
+                    <img src="{% static 'weather_logos/Снег.png' %}" alt="Снег" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  </div>
+                  <div class="col" style="margin-top: 20px;">
+                    <h1 style="font-size: 27px;">+{{temp_4}}</h1>
+                  </div>
+                    
+                </div> 
+      
+                    
+                  
+                </div>
+              </div>
+              
+              <div class="col" >
+                <h1 style="font-size: 15px;">Жел жлд:{{wind_4}}м/с</h1>
+              </div>
+              <div class="col">
+                <h1 style="margin-top: -10px;">11:00</h1>
+              </div>
+            </div>
+          </div> 
+        </div>
+        <div style="width: 135px; height: 135px; background-color: rgb(231, 230, 230); border-radius: 10px; margin-top: -135px; margin-left: 650px;">
+          <div class="container">
+
+            <div class="row-cols-1">
+              <div class="col">
+                <div class="row">
+                  <div class="col-5" >
+                  {% if description_5 == 'few clouds' %}
+                    <img src="{% static 'weather_logos/немного облачно.png'%}" alt="немного облачно" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_5 == 'clear sky' %}
+                    <img src="{% static 'weather_logos/Солнечно.png' %}" alt="Солнечно" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_5 == 'scattered clouds' %}
+                    <img src="{% static 'weather_logos/облачно с происнениями.png' %}" alt="Солнечно с происненеями" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_5 == 'broken clouds' or description_5 == 'overcast clouds'%}
+                    <img src="{% static 'weather_logos/Облачно.png' %}" alt="Облачно" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_5 == 'shower rain' %}
+                    <img src="{% static 'weather_logos/дождь.png' %}" alt="Ливень" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_5 == 'rain' or description_5 == 'light rain' or description_5 == 'moderate rain' or description_5 == 'heavy intensity rain' or description_5 == 'very heavy rain' or description_5 == 'extreme rain'  %}
+                    <img src="{% static 'weather_logos/дождь с произнеями.png' %}" alt="Дождь" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_5 == 'thunderstorm' %}
+                    <img src="{% static 'weather_logos/гроза.png' %}" alt="Гроза" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_5 == 'snow' %}
+                    <img src="{% static 'weather_logos/Снег.png' %}" alt="Снег" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  </div>
+                  <div class="col" style="margin-top: 20px;">
+                    <h1 style="font-size: 27px;">+{{temp_5}}</h1>
+                  </div>
+                    
+                </div> 
+      
+                    
+                  
+                </div>
+              </div>
+              
+              <div class="col" >
+                <h1 style="font-size: 15px;">Жел жлд:{{wind_5}}м/с</h1>
+              </div>
+              <div class="col" >
+                <h1 style="margin-top: -10px;">14:00</h1>
+              </div>
+            </div>
+          </div> 
+        </div>
+        <div style="width: 135px; height: 135px; background-color: rgb(231, 230, 230); border-radius: 10px; margin-top: -135px; margin-left: 800px;">
+          <div class="container">
+
+            <div class="row-cols-1">
+              <div class="col">
+                <div class="row">
+                  <div class="col-5" >
+                  {% if description_6 == 'few clouds' %}
+                    <img src="{% static 'weather_logos/немного облачно.png'%}" alt="немного облачно" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_6 == 'clear sky' %}
+                    <img src="{% static 'weather_logos/Солнечно.png' %}" alt="Солнечно" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_6 == 'scattered clouds' %}
+                    <img src="{% static 'weather_logos/облачно с происнениями.png' %}" alt="Солнечно с происненеями" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_6 == 'broken clouds' or description_6 == 'overcast clouds'%}
+                    <img src="{% static 'weather_logos/Облачно.png' %}" alt="Облачно" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_6 == 'shower rain' %}
+                    <img src="{% static 'weather_logos/дождь.png' %}" alt="Ливень" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_6 == 'rain' or description_6 == 'light rain' or description_6 == 'moderate rain' or description_6 == 'heavy intensity rain' or description_6 == 'very heavy rain' or description_6 == 'extreme rain' %}
+                    <img src="{% static 'weather_logos/дождь с произнеями.png' %}" alt="Дождь" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_6 == 'thunderstorm' %}
+                    <img src="{% static 'weather_logos/гроза.png' %}" alt="Гроза" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_6 == 'snow' %}
+                    <img src="{% static 'weather_logos/Снег.png' %}" alt="Снег" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  </div>
+                  <div class="col" style="margin-top: 20px;">
+                    <h1 style="font-size: 27px;">+{{temp_6 }}</h1>
+                  </div>
+                    
+                </div> 
+      
+                    
+                  
+                </div>
+              </div>
+              
+              <div class="col" >
+                <h1 style="font-size: 15px;">Жел жлд:{{wind_6}}м/с</h1>
+              </div>
+              <div class="col" >
+                <h1 style="margin-top: -10px;">17:00</h1>
+              </div>
+            </div>
+          </div> 
+        </div>
+        <div style="width: 135px; height: 135px; background-color: rgb(231, 230, 230); border-radius: 10px; margin-top: -135px; margin-left: 950px;">
+          <div class="container">
+
+            <div class="row-cols-1">
+              <div class="col">
+                <div class="row">
+                  <div class="col-5" >
+                  {% if description_7 == 'few clouds' %}
+                    <img src="{% static 'weather_logos/немного облачно.png'%}" alt="немного облачно" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_7 == 'clear sky' %}
+                    <img src="{% static 'weather_logos/Солнечно.png' %}" alt="Солнечно" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_7 == 'scattered clouds' %}
+                    <img src="{% static 'weather_logos/облачно с происнениями.png' %}" alt="Солнечно с происненеями" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_7 == 'broken clouds' or description_7 == 'overcast clouds'%}
+                    <img src="{% static 'weather_logos/Облачно.png' %}" alt="Облачно" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_7 == 'shower rain' %}
+                    <img src="{% static 'weather_logos/дождь.png' %}" alt="Ливень" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_7 == 'rain' or description_7 == 'light rain' or description_7 == 'moderate rain' or description_7 == 'heavy intensity rain' or description_7 == 'very heavy rain' or description_7 == 'extreme rain' %}
+                    <img src="{% static 'weather_logos/дождь с произнеями.png' %}" alt="Дождь" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_7 == 'thunderstorm' %}
+                    <img src="{% static 'weather_logos/гроза.png' %}" alt="Гроза" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_7 == 'snow' %}
+                    <img src="{% static 'weather_logos/Снег.png' %}" alt="Снег" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  </div>
+                  <div class="col" style="margin-top: 20px;">
+                    <h1 style="font-size: 27px;">+{{temp_7}}</h1>
+                  </div>
+                    
+                </div> 
+      
+                    
+                  
+                </div>
+              </div>
+              
+              <div class="col" >
+                <h1 style="font-size: 15px;">Жел жлд:{{wind_7}}м/с</h1>
+              </div>
+              <div class="col" >
+                <h1 style="margin-top: -10px;">20:00</h1>
+              </div>
+            </div>
+          </div> 
+        </div>
+        <div style="width: 135px; height: 135px; background-color: rgb(231, 230, 230); border-radius: 10px; margin-top: -135px; margin-left: 1100px;">
+          <div class="container">
+
+            <div class="row-cols-1">
+              <div class="col">
+                <div class="row">
+                  <div class="col-5" >
+                  {% if description_8 == 'few clouds' %}
+                    <img src="{% static 'weather_logos/немного облачно.png'%}" alt="немного облачно" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_8 == 'clear sky' %}
+                    <img src="{% static 'weather_logos/Солнечно.png' %}" alt="Солнечно" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_8 == 'scattered clouds' %}
+                    <img src="{% static 'weather_logos/облачно с происнениями.png' %}" alt="Солнечно с происненеями" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_8 == 'broken clouds' or description_8 == 'overcast clouds'%}
+                    <img src="{% static 'weather_logos/Облачно.png' %}" alt="Облачно" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_8 == 'shower rain' %}
+                    <img src="{% static 'weather_logos/дождь.png' %}" alt="Ливень" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_8 == 'rain' or description_8 == 'light rain' or description_8 == 'moderate rain' or description_8 == 'heavy intensity rain' or description_8 == 'very heavy rain' or description_8 == 'extreme rain' %}
+                    <img src="{% static 'weather_logos/дождь с произнеями.png' %}" alt="Дождь" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_8 == 'thunderstorm' %}
+                    <img src="{% static 'weather_logos/гроза.png' %}" alt="Гроза" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_8 == 'snow' %}
+                    <img src="{% static 'weather_logos/Снег.png' %}" alt="Снег" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  </div>
+                  <div class="col" style="margin-top: 20px;">
+                    <h1 style="font-size: 27px;">+{{temp_8}}</h1>
+                  </div>
+                    
+                </div> 
+      
+                    
+                  
+                </div>
+              </div>
+              
+              <div class="col" >
+                <h1 style="font-size: 15px;">Жел жлд:{{wind_8}}м/с</h1>
+              </div>
+              <div class="col" >
+                <h1 style="margin-top: -10px;">23:00</h1>
+              </div>
+            </div>
+          </div> 
+        </div>
+      {% endif %}
+      {% if dt_1 == '5:00' %}
+        <div style="width: 135px; height: 135px; background-color: rgb(231, 230, 230); border-radius: 10px;">
+          <div class="container">
+
+            <div class="row-cols-1">
+              <div class="col">
+                <div class="row">
+                  <div class="col-5" >
+                  {% if description_1 == 'few clouds' %}
+                    <img src="{% static 'weather_logos/немного облачно.png'%}" alt="немного облачно" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_1 == 'clear sky' %}
+                    <img src="{% static 'weather_logos/Солнечно.png' %}" alt="Солнечно" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_1 == 'scattered clouds' %}
+                    <img src="{% static 'weather_logos/облачно с происнениями.png' %}" alt="Солнечно с происненеями" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_1 == 'broken clouds' or description_1 == 'overcast clouds' %}
+                    <img src="{% static 'weather_logos/Облачно.png' %}" alt="Облачно" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_1 == 'shower rain' %}
+                    <img src="{% static 'weather_logos/дождь.png' %}" alt="Ливень" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_1 == 'rain' or description_1 == 'light rain' or description_1 == 'moderate rain' or description_1 == 'heavy intensity rain' or description_1 == 'very heavy rain' or description == 'extreme rain' %}
+                    <img src="{% static 'weather_logos/дождь с произнеями.png' %}" alt="Дождь" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_1 == 'thunderstorm' %}
+                    <img src="{% static 'weather_logos/гроза.png' %}" alt="Гроза" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_1 == 'snow' %}
+                    <img src="{% static 'weather_logos/Снег.png' %}" alt="Снег" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  </div>
+                  <div class="col" style="margin-top: 20px;">
+                    <h1 style="font-size: 27px;">+{{temp_1}}</h1>
+                  </div>
+                    
+                </div> 
+      
+                    
+                  
+                </div>
+              </div>
+            
+              <div class="col"  >
+                <h1 style="font-size: 15px;">Жел жлд:{{wind_1}}м/с</h1>
+              </div>
+              <div class="col">
+                <h1 style="margin-top: -10px;">5:00</h1>
+              </div>
+            </div>
+          </div> 
+        </div>
+        <div style="width: 135px; height: 135px; background-color: rgb(231, 230, 230); border-radius: 10px; margin-top: -135px; margin-left: 200px;">
+          <div class="container">
+
+            <div class="row-cols-1">
+              <div class="col">
+                <div class="row">
+                  <div class="col-5" >
+                  {% if description_2 == 'few clouds' %}
+                    <img src="{% static 'weather_logos/немного облачно.png'%}" alt="немного облачно" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_2 == 'clear sky' %}
+                    <img src="{% static 'weather_logos/Солнечно.png' %}" alt="Солнечно" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_2 == 'scattered clouds' %}
+                    <img src="{% static 'weather_logos/облачно с происнениями.png' %}" alt="Солнечно с происненеями" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {%  if description_2 == 'broken clouds' or description_2 == 'overcast clouds'%}
+                    <img src="{% static 'weather_logos/Облачно.png' %}" alt="Облачно" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_2 == 'shower rain' %}
+                    <img src="{% static 'weather_logos/дождь.png' %}" alt="Ливень" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_2 == 'rain' or description_2 == 'light rain' or description_2 == 'moderate rain' or description_2 == 'heavy intensity rain' or description_2 == 'very heavy rain' or description_2 == 'extreme rain' %}
+                    <img src="{% static 'weather_logos/дождь с произнеями.png' %}" alt="Дождь" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_2 == 'thunderstorm' %}
+                    <img src="{% static 'weather_logos/гроза.png' %}" alt="Гроза" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_2 == 'snow' %}
+                    <img src="{% static 'weather_logos/Снег.png' %}" alt="Снег" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  </div>
+                  <div class="col" style="margin-top: 20px;">
+                    <h1 style="font-size: 27px;">+{{temp_2}}</h1>
+                  </div>
+                    
+                </div> 
+      
+                    
+                  
+                </div>
+              </div>
+              
+              <div class="col">
+                <h1 style="font-size: 15px;">Жел жлд:{{wind_2}}м/с</h1>
+              </div>
+
+              <div class="col">
+                <h1 style="margin-top: -10px;">8:00</h1>
+              </div>
+            </div>
+          </div> 
+        </div>
+        <div style="width: 135px; height: 135px; background-color: rgb(231, 230, 230); border-radius: 10px; margin-top: -135px; margin-left: 350px;">
+          <div class="container">
+
+            <div class="row-cols-1">
+              <div class="col">
+                <div class="row">
+                  <div class="col-5" >
+                  {% if description_3 == 'few clouds' %}
+                    <img src="{% static 'weather_logos/немного облачно.png'%}" alt="немного облачно" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_3 == 'clear sky' %}
+                    <img src="{% static 'weather_logos/Солнечно.png' %}" alt="Солнечно" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_3 == 'scattered clouds' %}
+                    <img src="{% static 'weather_logos/облачно с происнениями.png' %}" alt="Солнечно с происненеями" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_3 == 'broken clouds' or description_3 == 'overcast clouds' %}
+                    <img src="{% static 'weather_logos/Облачно.png' %}" alt="Облачно" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_3 == 'shower rain' %}
+                    <img src="{% static 'weather_logos/дождь.png' %}" alt="Ливень" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_3 == 'rain' or description_3 == 'light rain' or description_3 == 'moderate rain' or description_3 == 'heavy intensity rain' or description_3 == 'very heavy rain' or description_3 == 'extreme rain'%}
+                    <img src="{% static 'weather_logos/дождь с произнеями.png' %}" alt="Дождь" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_3 == 'thunderstorm' %}
+                    <img src="{% static 'weather_logos/гроза.png' %}" alt="Гроза" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_3 == 'snow' %}
+                    <img src="{% static 'weather_logos/Снег.png' %}" alt="Снег" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  </div>
+                  <div class="col" style="margin-top: 20px;">
+                    <h1 style="font-size: 27px;">+{{temp_3}}</h1>
+                  </div>
+                    
+                </div> 
+      
+                    
+                  
+                </div>
+              </div>
+              
+              <div class="col" >
+                <h1 style="font-size: 15px;">Жел жлд:{{wind_3}}м/с</h1>
+              </div>
+              <div class="col">
+                <h1 style="margin-top: -10px;">11:00</h1>
+              </div>
+            </div>
+          </div> 
+        </div>
+        <div style="width: 135px; height: 135px; background-color: rgb(231, 230, 230); border-radius: 10px; margin-top: -135px; margin-left: 500px;">
+          <div class="container">
+
+            <div class="row-cols-1">
+              <div class="col">
+                <div class="row">
+                  <div class="col-5" >
+                  {% if description_4 == 'few clouds' %}
+                    <img src="{% static 'weather_logos/немного облачно.png'%}" alt="немного облачно" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_4 == 'clear sky' %}
+                    <img src="{% static 'weather_logos/Солнечно.png' %}" alt="Солнечно" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_4 == 'scattered clouds' %}
+                    <img src="{% static 'weather_logos/облачно с происнениями.png' %}" alt="Солнечно с происненеями" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_4 == 'broken clouds' or description_4 == 'overcast clouds'%}
+                    <img src="{% static 'weather_logos/Облачно.png' %}" alt="Облачно" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_4 == 'shower rain' %}
+                    <img src="{% static 'weather_logos/дождь.png' %}" alt="Ливень" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_4 == 'rain' or description_4 == 'light rain' or description_4 == 'moderate rain' or description_4 == 'heavy intensity rain' or description_4 == 'very heavy rain' or description_4 == 'extreme rain' %}
+                    <img src="{% static 'weather_logos/дождь с произнеями.png' %}" alt="Дождь" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_4 == 'thunderstorm' %}
+                    <img src="{% static 'weather_logos/гроза.png' %}" alt="Гроза" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_4 == 'snow' %}
+                    <img src="{% static 'weather_logos/Снег.png' %}" alt="Снег" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  </div>
+                  <div class="col" style="margin-top: 20px;">
+                    <h1 style="font-size: 27px;">+{{temp_4}}</h1>
+                  </div>
+                    
+                </div> 
+      
+                    
+                  
+                </div>
+              </div>
+              
+              <div class="col" >
+                <h1 style="font-size: 15px;">Жел жлд:{{wind_4}}м/с</h1>
+              </div>
+              <div class="col">
+                <h1 style="margin-top: -10px;">14:00</h1>
+              </div>
+            </div>
+          </div> 
+        </div>
+        <div style="width: 135px; height: 135px; background-color: rgb(231, 230, 230); border-radius: 10px; margin-top: -135px; margin-left: 650px;">
+          <div class="container">
+
+            <div class="row-cols-1">
+              <div class="col">
+                <div class="row">
+                  <div class="col-5" >
+                  {% if description_5 == 'few clouds' %}
+                    <img src="{% static 'weather_logos/немного облачно.png'%}" alt="немного облачно" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_5 == 'clear sky' %}
+                    <img src="{% static 'weather_logos/Солнечно.png' %}" alt="Солнечно" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_5 == 'scattered clouds' %}
+                    <img src="{% static 'weather_logos/облачно с происнениями.png' %}" alt="Солнечно с происненеями" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_5 == 'broken clouds' or description_5 == 'overcast clouds'%}
+                    <img src="{% static 'weather_logos/Облачно.png' %}" alt="Облачно" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_5 == 'shower rain' %}
+                    <img src="{% static 'weather_logos/дождь.png' %}" alt="Ливень" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_5 == 'rain' or description_5 == 'light rain' or description_5 == 'moderate rain' or description_5 == 'heavy intensity rain' or description_5 == 'very heavy rain' or description_5 == 'extreme rain' %}
+                    <img src="{% static 'weather_logos/дождь с произнеями.png' %}" alt="Дождь" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_5 == 'thunderstorm' %}
+                    <img src="{% static 'weather_logos/гроза.png' %}" alt="Гроза" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_5 == 'snow' %}
+                    <img src="{% static 'weather_logos/Снег.png' %}" alt="Снег" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  </div>
+                  <div class="col" style="margin-top: 20px;">
+                    <h1 style="font-size: 27px;">+{{temp_5}}</h1>
+                  </div>
+                    
+                </div> 
+      
+                    
+                  
+                </div>
+              </div>
+              
+              <div class="col" >
+                <h1 style="font-size: 15px;">Жел жлд:{{wind_5}}м/с</h1>
+              </div>
+              <div class="col" >
+                <h1 style="margin-top: -10px;">17:00</h1>
+              </div>
+            </div>
+          </div> 
+        </div>
+        <div style="width: 135px; height: 135px; background-color: rgb(231, 230, 230); border-radius: 10px; margin-top: -135px; margin-left: 800px;">
+          <div class="container">
+
+            <div class="row-cols-1">
+              <div class="col">
+                <div class="row">
+                  <div class="col-5" >
+                  {% if description_6 == 'few clouds' %}
+                    <img src="{% static 'weather_logos/немного облачно.png'%}" alt="немного облачно" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_6 == 'clear sky' %}
+                    <img src="{% static 'weather_logos/Солнечно.png' %}" alt="Солнечно" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_6 == 'scattered clouds' %}
+                    <img src="{% static 'weather_logos/облачно с происнениями.png' %}" alt="Солнечно с происненеями" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_6 == 'broken clouds' or description_6 == 'overcast clouds'%}
+                    <img src="{% static 'weather_logos/Облачно.png' %}" alt="Облачно" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_6 == 'shower rain' %}
+                    <img src="{% static 'weather_logos/дождь.png' %}" alt="Ливень" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_6 == 'rain' or description_6 == 'light rain' or description_6 == 'moderate rain' or description_6 == 'heavy intensity rain' or description_6 == 'very heavy rain' or description_6 == 'extreme rain' %}
+                    <img src="{% static 'weather_logos/дождь с произнеями.png' %}" alt="Дождь" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_6 == 'thunderstorm' %}
+                    <img src="{% static 'weather_logos/гроза.png' %}" alt="Гроза" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_6 == 'snow' %}
+                    <img src="{% static 'weather_logos/Снег.png' %}" alt="Снег" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  </div>
+                  <div class="col" style="margin-top: 20px;">
+                    <h1 style="font-size: 27px;">+{{temp_6 }}</h1>
+                  </div>
+                    
+                </div> 
+      
+                    
+                  
+                </div>
+              </div>
+              
+              <div class="col" >
+                <h1 style="font-size: 15px;">Жел жлд:{{wind_6}}м/с</h1>
+              </div>
+              <div class="col" >
+                <h1 style="margin-top: -10px;">20:00</h1>
+              </div>
+            </div>
+          </div> 
+        </div>
+        <div style="width: 135px; height: 135px; background-color: rgb(231, 230, 230); border-radius: 10px; margin-top: -135px; margin-left: 950px;">
+          <div class="container">
+
+            <div class="row-cols-1">
+              <div class="col">
+                <div class="row">
+                  <div class="col-5" >
+                  {% if description_7 == 'few clouds' %}
+                    <img src="{% static 'weather_logos/немного облачно.png'%}" alt="немного облачно" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_7 == 'clear sky' %}
+                    <img src="{% static 'weather_logos/Солнечно.png' %}" alt="Солнечно" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_7 == 'scattered clouds' %}
+                    <img src="{% static 'weather_logos/облачно с происнениями.png' %}" alt="Солнечно с происненеями" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_7 == 'broken clouds' or description_7 == 'overcast clouds'%}
+                    <img src="{% static 'weather_logos/Облачно.png' %}" alt="Облачно" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_7 == 'shower rain' %}
+                    <img src="{% static 'weather_logos/дождь.png' %}" alt="Ливень" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_7 == 'rain' or description_7 == 'light rain' or description_7 == 'moderate rain' or description_7 == 'heavy intensity rain' or description_7 == 'very heavy rain' or description_7 == 'extreme rain' %}
+                    <img src="{% static 'weather_logos/дождь с произнеями.png' %}" alt="Дождь" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_7 == 'thunderstorm' %}
+                    <img src="{% static 'weather_logos/гроза.png' %}" alt="Гроза" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_7 == 'snow' %}
+                    <img src="{% static 'weather_logos/Снег.png' %}" alt="Снег" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  </div>
+                  <div class="col" style="margin-top: 20px;">
+                    <h1 style="font-size: 27px;">+{{temp_7}}</h1>
+                  </div>
+                    
+                </div> 
+      
+                    
+                  
+                </div>
+              </div>
+              
+              <div class="col" >
+                <h1 style="font-size: 15px;">Жел жлд:{{wind_7}}м/с</h1>
+              </div>
+              <div class="col" >
+                <h1 style="margin-top: -10px;">23:00</h1>
+              </div>
+            </div>
+          </div> 
+        </div>
+        
+      {% endif %}
+      {% if dt_1 == '8:00' %}
+        <div style="width: 135px; height: 135px; background-color: rgb(231, 230, 230); border-radius: 10px;">
+          <div class="container">
+
+            <div class="row-cols-1">
+              <div class="col">
+                <div class="row">
+                  <div class="col-5" >
+                  {% if description_1 == 'few clouds' %}
+                    <img src="{% static 'weather_logos/немного облачно.png'%}" alt="немного облачно" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_1 == 'clear sky' %}
+                    <img src="{% static 'weather_logos/Солнечно.png' %}" alt="Солнечно" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_1 == 'scattered clouds' %}
+                    <img src="{% static 'weather_logos/облачно с происнениями.png' %}" alt="Солнечно с происненеями" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_1 == 'broken clouds' or description_1 == 'overcast clouds'%}
+                    <img src="{% static 'weather_logos/Облачно.png' %}" alt="Облачно" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_1 == 'shower rain' %}
+                    <img src="{% static 'weather_logos/дождь.png' %}" alt="Ливень" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_1 == 'rain' or description_1 == 'light rain' or description_1 == 'moderate rain' or description_1 == 'heavy intensity rain' or description_1 == 'very heavy rain' or description == 'extreme rain' %}
+                    <img src="{% static 'weather_logos/дождь с произнеями.png' %}" alt="Дождь" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_1 == 'thunderstorm' %}
+                    <img src="{% static 'weather_logos/гроза.png' %}" alt="Гроза" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_1 == 'snow' %}
+                    <img src="{% static 'weather_logos/Снег.png' %}" alt="Снег" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  </div>
+                  <div class="col" style="margin-top: 20px;">
+                    <h1 style="font-size: 27px;">+{{temp_1}}</h1>
+                  </div>
+                    
+                </div> 
+      
+                    
+                  
+                </div>
+              </div>
+            
+              <div class="col"  >
+                <h1 style="font-size: 15px;">Жел жлд:{{wind_1}}м/с</h1>
+              </div>
+              <div class="col">
+                <h1 style="margin-top: -10px;">8:00</h1>
+              </div>
+            </div>
+          </div> 
+        </div>
+        <div style="width: 135px; height: 135px; background-color: rgb(231, 230, 230); border-radius: 10px; margin-top: -135px; margin-left: 200px;">
+          <div class="container">
+
+            <div class="row-cols-1">
+              <div class="col">
+                <div class="row">
+                  <div class="col-5" >
+                  {% if description_2 == 'few clouds' %}
+                    <img src="{% static 'weather_logos/немного облачно.png'%}" alt="немного облачно" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_2 == 'clear sky' %}
+                    <img src="{% static 'weather_logos/Солнечно.png' %}" alt="Солнечно" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_2 == 'scattered clouds' %}
+                    <img src="{% static 'weather_logos/облачно с происнениями.png' %}" alt="Солнечно с происненеями" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {%  if description_2 == 'broken clouds' or description_2 == 'overcast clouds'%}
+                    <img src="{% static 'weather_logos/Облачно.png' %}" alt="Облачно" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_2 == 'shower rain' %}
+                    <img src="{% static 'weather_logos/дождь.png' %}" alt="Ливень" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_2 == 'rain' or description_2 == 'light rain' or description_2 == 'moderate rain' or description_2 == 'heavy intensity rain' or description_2 == 'very heavy rain' or description_2 == 'extreme rain' %}
+                    <img src="{% static 'weather_logos/дождь с произнеями.png' %}" alt="Дождь" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_2 == 'thunderstorm' %}
+                    <img src="{% static 'weather_logos/гроза.png' %}" alt="Гроза" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_2 == 'snow' %}
+                    <img src="{% static 'weather_logos/Снег.png' %}" alt="Снег" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  </div>
+                  <div class="col" style="margin-top: 20px;">
+                    <h1 style="font-size: 27px;">+{{temp_2}}</h1>
+                  </div>
+                    
+                </div> 
+      
+                    
+                  
+                </div>
+              </div>
+              
+              <div class="col">
+                <h1 style="font-size: 15px;">Жел жлд:{{wind_2}}м/с</h1>
+              </div>
+
+              <div class="col">
+                <h1 style="margin-top: -10px;">11:00</h1>
+              </div>
+            </div>
+          </div> 
+        </div>
+        <div style="width: 135px; height: 135px; background-color: rgb(231, 230, 230); border-radius: 10px; margin-top: -135px; margin-left: 350px;">
+          <div class="container">
+
+            <div class="row-cols-1">
+              <div class="col">
+                <div class="row">
+                  <div class="col-5" >
+                  {% if description_3 == 'few clouds' %}
+                    <img src="{% static 'weather_logos/немного облачно.png'%}" alt="немного облачно" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_3 == 'clear sky' %}
+                    <img src="{% static 'weather_logos/Солнечно.png' %}" alt="Солнечно" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_3 == 'scattered clouds' %}
+                    <img src="{% static 'weather_logos/облачно с происнениями.png' %}" alt="Солнечно с происненеями" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_3 == 'broken clouds' or description_3 == 'overcast clouds' %}
+                    <img src="{% static 'weather_logos/Облачно.png' %}" alt="Облачно" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_3 == 'shower rain' %}
+                    <img src="{% static 'weather_logos/дождь.png' %}" alt="Ливень" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_3 == 'rain' or description_3 == 'light rain' or description_3 == 'moderate rain' or description_3 == 'heavy intensity rain' or description_3 == 'very heavy rain' or description_3 == 'extreme rain' %}
+                    <img src="{% static 'weather_logos/дождь с произнеями.png' %}" alt="Дождь" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_3 == 'thunderstorm' %}
+                    <img src="{% static 'weather_logos/гроза.png' %}" alt="Гроза" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_3 == 'snow' %}
+                    <img src="{% static 'weather_logos/Снег.png' %}" alt="Снег" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  </div>
+                  <div class="col" style="margin-top: 20px;">
+                    <h1 style="font-size: 27px;">+{{temp_3}}</h1>
+                  </div>
+                    
+                </div> 
+      
+                    
+                  
+                </div>
+              </div>
+              
+              <div class="col" >
+                <h1 style="font-size: 15px;">Жел жлд:{{wind_3}}м/с</h1>
+              </div>
+              <div class="col">
+                <h1 style="margin-top: -10px;">14:00</h1>
+              </div>
+            </div>
+          </div> 
+        </div>
+        <div style="width: 135px; height: 135px; background-color: rgb(231, 230, 230); border-radius: 10px; margin-top: -135px; margin-left: 500px;">
+          <div class="container">
+
+            <div class="row-cols-1">
+              <div class="col">
+                <div class="row">
+                  <div class="col-5" >
+                  {% if description_4 == 'few clouds' %}
+                    <img src="{% static 'weather_logos/немного облачно.png'%}" alt="немного облачно" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_4 == 'clear sky' %}
+                    <img src="{% static 'weather_logos/Солнечно.png' %}" alt="Солнечно" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_4 == 'scattered clouds' %}
+                    <img src="{% static 'weather_logos/облачно с происнениями.png' %}" alt="Солнечно с происненеями" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_4 == 'broken clouds' or description_4 == 'overcast clouds' %}
+                    <img src="{% static 'weather_logos/Облачно.png' %}" alt="Облачно" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_4 == 'shower rain' %}
+                    <img src="{% static 'weather_logos/дождь.png' %}" alt="Ливень" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_4 == 'rain' or description_4 == 'light rain' or description_4 == 'moderate rain' or description_4 == 'heavy intensity rain' or description_4 == 'very heavy rain' or description_4 == 'extreme rain' %}
+                    <img src="{% static 'weather_logos/дождь с произнеями.png' %}" alt="Дождь" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_4 == 'thunderstorm' %}
+                    <img src="{% static 'weather_logos/гроза.png' %}" alt="Гроза" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_4 == 'snow' %}
+                    <img src="{% static 'weather_logos/Снег.png' %}" alt="Снег" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  </div>
+                  <div class="col" style="margin-top: 20px;">
+                    <h1 style="font-size: 27px;">+{{temp_4}}</h1>
+                  </div>
+                    
+                </div> 
+      
+                    
+                  
+                </div>
+              </div>
+              
+              <div class="col" >
+                <h1 style="font-size: 15px;">Жел жлд:{{wind_4}}м/с</h1>
+              </div>
+              <div class="col">
+                <h1 style="margin-top: -10px;">17:00</h1>
+              </div>
+            </div>
+          </div> 
+        </div>
+        <div style="width: 135px; height: 135px; background-color: rgb(231, 230, 230); border-radius: 10px; margin-top: -135px; margin-left: 650px;">
+          <div class="container">
+
+            <div class="row-cols-1">
+              <div class="col">
+                <div class="row">
+                  <div class="col-5" >
+                  {% if description_5 == 'few clouds' %}
+                    <img src="{% static 'weather_logos/немного облачно.png'%}" alt="немного облачно" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_5 == 'clear sky' %}
+                    <img src="{% static 'weather_logos/Солнечно.png' %}" alt="Солнечно" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_5 == 'scattered clouds' %}
+                    <img src="{% static 'weather_logos/облачно с происнениями.png' %}" alt="Солнечно с происненеями" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_5 == 'broken clouds' or description_5 == 'overcast clouds' %}
+                    <img src="{% static 'weather_logos/Облачно.png' %}" alt="Облачно" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_5 == 'shower rain' %}
+                    <img src="{% static 'weather_logos/дождь.png' %}" alt="Ливень" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_5 == 'rain' or description_5 == 'light rain' or description_5 == 'moderate rain' or description_5 == 'heavy intensity rain' or description_5 == 'very heavy rain' or description_5 == 'extreme rain' %}
+                    <img src="{% static 'weather_logos/дождь с произнеями.png' %}" alt="Дождь" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_5 == 'thunderstorm' %}
+                    <img src="{% static 'weather_logos/гроза.png' %}" alt="Гроза" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_5 == 'snow' %}
+                    <img src="{% static 'weather_logos/Снег.png' %}" alt="Снег" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  </div>
+                  <div class="col" style="margin-top: 20px;">
+                    <h1 style="font-size: 27px;">+{{temp_5}}</h1>
+                  </div>
+                    
+                </div> 
+      
+                    
+                  
+                </div>
+              </div>
+              
+              <div class="col" >
+                <h1 style="font-size: 15px;">Жел жлд:{{wind_5}}м/с</h1>
+              </div>
+              <div class="col" >
+                <h1 style="margin-top: -10px;">20:00</h1>
+              </div>
+            </div>
+          </div> 
+        </div>
+        <div style="width: 135px; height: 135px; background-color: rgb(231, 230, 230); border-radius: 10px; margin-top: -135px; margin-left: 800px;">
+          <div class="container">
+
+            <div class="row-cols-1">
+              <div class="col">
+                <div class="row">
+                  <div class="col-5" >
+                  {% if description_6 == 'few clouds' %}
+                    <img src="{% static 'weather_logos/немного облачно.png'%}" alt="немного облачно" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_6 == 'clear sky' %}
+                    <img src="{% static 'weather_logos/Солнечно.png' %}" alt="Солнечно" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_6 == 'scattered clouds' %}
+                    <img src="{% static 'weather_logos/облачно с происнениями.png' %}" alt="Солнечно с происненеями" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_6 == 'broken clouds' or description_6 == 'overcast clouds'%}
+                    <img src="{% static 'weather_logos/Облачно.png' %}" alt="Облачно" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_6 == 'shower rain' %}
+                    <img src="{% static 'weather_logos/дождь.png' %}" alt="Ливень" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_6 == 'rain' or description_6 == 'light rain' or description_6 == 'moderate rain' or description_6 == 'heavy intensity rain' or description_6 == 'very heavy rain' or description_6 == 'extreme rain' %}
+                    <img src="{% static 'weather_logos/дождь с произнеями.png' %}" alt="Дождь" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_6 == 'thunderstorm' %}
+                    <img src="{% static 'weather_logos/гроза.png' %}" alt="Гроза" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_6 == 'snow' %}
+                    <img src="{% static 'weather_logos/Снег.png' %}" alt="Снег" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  </div>
+                  <div class="col" style="margin-top: 20px;">
+                    <h1 style="font-size: 27px;">+{{temp_6 }}</h1>
+                  </div>
+                    
+                </div> 
+      
+                    
+                  
+                </div>
+              </div>
+              
+              <div class="col" >
+                <h1 style="font-size: 15px;">Жел жлд:{{wind_6}}м/с</h1>
+              </div>
+              <div class="col" >
+                <h1 style="margin-top: -10px;">23:00</h1>
+              </div>
+            </div>
+          </div> 
+        </div>
+        
+        
+      {% endif %}
+      {% if dt_1 == '11:00' %}
+        <div style="width: 135px; height: 135px; background-color: rgb(231, 230, 230); border-radius: 10px;">
+          <div class="container">
+
+            <div class="row-cols-1">
+              <div class="col">
+                <div class="row">
+                  <div class="col-5" >
+                  {% if description_1 == 'few clouds' %}
+                    <img src="{% static 'weather_logos/немного облачно.png'%}" alt="немного облачно" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_1 == 'clear sky' %}
+                    <img src="{% static 'weather_logos/Солнечно.png' %}" alt="Солнечно" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_1 == 'scattered clouds' %}
+                    <img src="{% static 'weather_logos/облачно с происнениями.png' %}" alt="Солнечно с происненеями" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_1 == 'broken clouds' or description_1 == 'overcast clouds' %}
+                    <img src="{% static 'weather_logos/Облачно.png' %}" alt="Облачно" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_1 == 'shower rain' %}
+                    <img src="{% static 'weather_logos/дождь.png' %}" alt="Ливень" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_1 == 'rain' or description_1 == 'light rain' or description_1 == 'moderate rain' or description_1 == 'heavy intensity rain' or description_1 == 'very heavy rain' or description == 'extreme rain' %}
+                    <img src="{% static 'weather_logos/дождь с произнеями.png' %}" alt="Дождь" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_1 == 'thunderstorm' %}
+                    <img src="{% static 'weather_logos/гроза.png' %}" alt="Гроза" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_1 == 'snow' %}
+                    <img src="{% static 'weather_logos/Снег.png' %}" alt="Снег" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  </div>
+                  <div class="col" style="margin-top: 20px;">
+                    <h1 style="font-size: 27px;">+{{temp_1}}</h1>
+                  </div>
+                    
+                </div> 
+      
+                    
+                  
+                </div>
+              </div>
+            
+              <div class="col"  >
+                <h1 style="font-size: 15px;">Жел жлд:{{wind_1}}м/с</h1>
+              </div>
+              <div class="col">
+                <h1 style="margin-top: -10px;">11:00</h1>
+              </div>
+            </div>
+          </div> 
+        </div>
+        <div style="width: 135px; height: 135px; background-color: rgb(231, 230, 230); border-radius: 10px; margin-top: -135px; margin-left: 200px;">
+          <div class="container">
+
+            <div class="row-cols-1">
+              <div class="col">
+                <div class="row">
+                  <div class="col-5" >
+                  {% if description_2 == 'few clouds' %}
+                    <img src="{% static 'weather_logos/немного облачно.png'%}" alt="немного облачно" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_2 == 'clear sky' %}
+                    <img src="{% static 'weather_logos/Солнечно.png' %}" alt="Солнечно" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_2 == 'scattered clouds' %}
+                    <img src="{% static 'weather_logos/облачно с происнениями.png' %}" alt="Солнечно с происненеями" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {%  if description_2 == 'broken clouds' or description_2 == 'overcast clouds'%}
+                    <img src="{% static 'weather_logos/Облачно.png' %}" alt="Облачно" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_2 == 'shower rain' %}
+                    <img src="{% static 'weather_logos/дождь.png' %}" alt="Ливень" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_2 == 'rain' or description_2 == 'light rain' or description_2 == 'moderate rain' or description_2 == 'heavy intensity rain' or description_2 == 'very heavy rain' or description_2 == 'extreme rain' %}
+                    <img src="{% static 'weather_logos/дождь с произнеями.png' %}" alt="Дождь" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_2 == 'thunderstorm' %}
+                    <img src="{% static 'weather_logos/гроза.png' %}" alt="Гроза" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_2 == 'snow' %}
+                    <img src="{% static 'weather_logos/Снег.png' %}" alt="Снег" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  </div>
+                  <div class="col" style="margin-top: 20px;">
+                    <h1 style="font-size: 27px;">+{{temp_2}}</h1>
+                  </div>
+                    
+                </div> 
+      
+                    
+                  
+                </div>
+              </div>
+              
+              <div class="col">
+                <h1 style="font-size: 15px;">Жел жлд:{{wind_2}}м/с</h1>
+              </div>
+
+              <div class="col">
+                <h1 style="margin-top: -10px;">14:00</h1>
+              </div>
+            </div>
+          </div> 
+        </div>
+        <div style="width: 135px; height: 135px; background-color: rgb(231, 230, 230); border-radius: 10px; margin-top: -135px; margin-left: 350px;">
+          <div class="container">
+
+            <div class="row-cols-1">
+              <div class="col">
+                <div class="row">
+                  <div class="col-5" >
+                  {% if description_3 == 'few clouds' %}
+                    <img src="{% static 'weather_logos/немного облачно.png'%}" alt="немного облачно" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_3 == 'clear sky' %}
+                    <img src="{% static 'weather_logos/Солнечно.png' %}" alt="Солнечно" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_3 == 'scattered clouds' %}
+                    <img src="{% static 'weather_logos/облачно с происнениями.png' %}" alt="Солнечно с происненеями" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_3 == 'broken clouds' or description_3 == 'overcast clouds' %}
+                    <img src="{% static 'weather_logos/Облачно.png' %}" alt="Облачно" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_3 == 'shower rain' %}
+                    <img src="{% static 'weather_logos/дождь.png' %}" alt="Ливень" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_3 == 'rain' or description_3 == 'light rain' or description_3 == 'moderate rain' or description_3 == 'heavy intensity rain' or description_3 == 'very heavy rain' or description_3 == 'extreme rain' %}
+                    <img src="{% static 'weather_logos/дождь с произнеями.png' %}" alt="Дождь" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_3 == 'thunderstorm' %}
+                    <img src="{% static 'weather_logos/гроза.png' %}" alt="Гроза" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_3 == 'snow' %}
+                    <img src="{% static 'weather_logos/Снег.png' %}" alt="Снег" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  </div>
+                  <div class="col" style="margin-top: 20px;">
+                    <h1 style="font-size: 27px;">+{{temp_3}}</h1>
+                  </div>
+                    
+                </div> 
+      
+                    
+                  
+                </div>
+              </div>
+              
+              <div class="col" >
+                <h1 style="font-size: 15px;">Жел жлд:{{wind_3}}м/с</h1>
+              </div>
+              <div class="col">
+                <h1 style="margin-top: -10px;">17:00</h1>
+              </div>
+            </div>
+          </div> 
+        </div>
+        <div style="width: 135px; height: 135px; background-color: rgb(231, 230, 230); border-radius: 10px; margin-top: -135px; margin-left: 500px;">
+          <div class="container">
+
+            <div class="row-cols-1">
+              <div class="col">
+                <div class="row">
+                  <div class="col-5" >
+                  {% if description_4 == 'few clouds' %}
+                    <img src="{% static 'weather_logos/немного облачно.png'%}" alt="немного облачно" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_4 == 'clear sky' %}
+                    <img src="{% static 'weather_logos/Солнечно.png' %}" alt="Солнечно" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_4 == 'scattered clouds' %}
+                    <img src="{% static 'weather_logos/облачно с происнениями.png' %}" alt="Солнечно с происненеями" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_4 == 'broken clouds' or description_4 == 'overcast clouds'%}
+                    <img src="{% static 'weather_logos/Облачно.png' %}" alt="Облачно" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_4 == 'shower rain' %}
+                    <img src="{% static 'weather_logos/дождь.png' %}" alt="Ливень" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_4 == 'rain' or description_4 == 'light rain' or description_4 == 'moderate rain' or description_4 == 'heavy intensity rain' or description_4 == 'very heavy rain' or description_4 == 'extreme rain' %}
+                    <img src="{% static 'weather_logos/дождь с произнеями.png' %}" alt="Дождь" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_4 == 'thunderstorm' %}
+                    <img src="{% static 'weather_logos/гроза.png' %}" alt="Гроза" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_4 == 'snow' %}
+                    <img src="{% static 'weather_logos/Снег.png' %}" alt="Снег" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  </div>
+                  <div class="col" style="margin-top: 20px;">
+                    <h1 style="font-size: 27px;">+{{temp_4}}</h1>
+                  </div>
+                    
+                </div> 
+      
+                    
+                  
+                </div>
+              </div>
+              
+              <div class="col" >
+                <h1 style="font-size: 15px;">Жел жлд:{{wind_4}}м/с</h1>
+              </div>
+              <div class="col">
+                <h1 style="margin-top: -10px;">20:00</h1>
+              </div>
+            </div>
+          </div> 
+        </div>
+        <div style="width: 135px; height: 135px; background-color: rgb(231, 230, 230); border-radius: 10px; margin-top: -135px; margin-left: 650px;">
+          <div class="container">
+
+            <div class="row-cols-1">
+              <div class="col">
+                <div class="row">
+                  <div class="col-5" >
+                  {% if description_5 == 'few clouds' %}
+                    <img src="{% static 'weather_logos/немного облачно.png'%}" alt="немного облачно" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_5 == 'clear sky' %}
+                    <img src="{% static 'weather_logos/Солнечно.png' %}" alt="Солнечно" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_5 == 'scattered clouds' %}
+                    <img src="{% static 'weather_logos/облачно с происнениями.png' %}" alt="Солнечно с происненеями" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_5 == 'broken clouds' or description_5 == 'overcast clouds' %}
+                    <img src="{% static 'weather_logos/Облачно.png' %}" alt="Облачно" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_5 == 'shower rain' %}
+                    <img src="{% static 'weather_logos/дождь.png' %}" alt="Ливень" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_5 == 'rain' or description_5 == 'light rain' or description_5 == 'moderate rain' or description_5 == 'heavy intensity rain' or description_5 == 'very heavy rain' or description_5 == 'extreme rain' %}
+                    <img src="{% static 'weather_logos/дождь с произнеями.png' %}" alt="Дождь" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_5 == 'thunderstorm' %}
+                    <img src="{% static 'weather_logos/гроза.png' %}" alt="Гроза" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_5 == 'snow' %}
+                    <img src="{% static 'weather_logos/Снег.png' %}" alt="Снег" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  </div>
+                  <div class="col" style="margin-top: 20px;">
+                    <h1 style="font-size: 27px;">+{{temp_5}}</h1>
+                  </div>
+                    
+                </div> 
+      
+                    
+                  
+                </div>
+              </div>
+              
+              <div class="col" >
+                <h1 style="font-size: 15px;">Жел жлд:{{wind_5}}м/с</h1>
+              </div>
+              <div class="col" >
+                <h1 style="margin-top: -10px;">23:00</h1>
+              </div>
+            </div>
+          </div> 
+        </div>     
+      {% endif %}
+      {% if dt_1 == '14:00' %}
+        <div style="width: 135px; height: 135px; background-color: rgb(231, 230, 230); border-radius: 10px;">
+          <div class="container">
+
+            <div class="row-cols-1">
+              <div class="col">
+                <div class="row">
+                  <div class="col-5" >
+                  {% if description_1 == 'few clouds' %}
+                    <img src="{% static 'weather_logos/немного облачно.png'%}" alt="немного облачно" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_1 == 'clear sky' %}
+                    <img src="{% static 'weather_logos/Солнечно.png' %}" alt="Солнечно" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_1 == 'scattered clouds' %}
+                    <img src="{% static 'weather_logos/облачно с происнениями.png' %}" alt="Солнечно с происненеями" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_1 == 'broken clouds' or description_1 == 'overcast clouds'%}
+                    <img src="{% static 'weather_logos/Облачно.png' %}" alt="Облачно" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_1 == 'shower rain' %}
+                    <img src="{% static 'weather_logos/дождь.png' %}" alt="Ливень" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_1 == 'rain' or description_1 == 'light rain' or description_1 == 'moderate rain' or description_1 == 'heavy intensity rain' or description_1 == 'very heavy rain' or description == 'extreme rain' %}
+                    <img src="{% static 'weather_logos/дождь с произнеями.png' %}" alt="Дождь" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_1 == 'thunderstorm' %}
+                    <img src="{% static 'weather_logos/гроза.png' %}" alt="Гроза" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  {% if description_1 == 'snow' %}
+                    <img src="{% static 'weather_logos/Снег.png' %}" alt="Снег" width="60" style="margin-top: 10px;">
+                  {% endif %}
+                  </div>
+                  <div class="col" style="margin-top: 20px;">
+                    <h1 style="font-size: 27px; margin-left: 5px;">+{{temp_1}}</h1>
+                  </div>
+                    
+                </div> 
+      
+                    
+                  
+                </div>
+              </div>
+            
+              <div class="col"  >
+                <h1 style="font-size: 15px;">Жел жлд:{{wind_1}}м/с</h1>
+              </div>
+              <div class="col">
+                <h1 style="margin-top: -10px;">14:00</h1>
+              </div>
+            </div>
+          </div> 
+        </div>
+        <div style="width: 135px; height: 135px; background-color: rgb(231, 230, 230); border-radius: 10px; margin-top: -135px; margin-left: 200px;">
+          <div class="container">
+
+            <div class="row-cols-1">
+              <div class="col">
+                <div class="row">
+                  <div class="col-5" >
+                    {% if description_2 == 'few clouds' %}
+                      <img src="{% static 'weather_logos/немного облачно.png'%}" alt="немного облачно" width="60" style="margin-top: 10px;">
+                    {% endif %}
+                    {% if description_2 == 'clear sky' %}
+                      <img src="{% static 'weather_logos/Солнечно.png' %}" alt="Солнечно" width="60" style="margin-top: 10px;">
+                    {% endif %}
+                    {% if description_2 == 'scattered clouds' %}
+                      <img src="{% static 'weather_logos/облачно с происнениями.png' %}" alt="Солнечно с происненеями" width="60" style="margin-top: 10px;">
+                    {% endif %}
+                    {% if description_2 == 'broken clouds' or description_2 == 'overcast clouds' %}
+                      <img src="{% static 'weather_logos/Облачно.png' %}" alt="Облачно" width="60" style="margin-top: 10px;">
+                    {% endif %}
+                    {% if description_2 == 'shower rain' %}
+                      <img src="{% static 'weather_logos/дождь.png' %}" alt="Ливень" width="60" style="margin-top: 10px;">
+                    {% endif %}
+                    {% if description_2 == 'rain' or description_2 == 'light rain' or description_2 == 'moderate rain' or description_2 == 'heavy intensity rain' or description_2 == 'very heavy rain' or description_2 == 'extreme rain' %}
+                      <img src="{% static 'weather_logos/дождь с произнеями.png' %}" alt="Дождь" width="60" style="margin-top: 10px;">
+                    {% endif %}
+                    {% if description_2 == 'thunderstorm' %}
+                      <img src="{% static 'weather_logos/гроза.png' %}" alt="Гроза" width="60" style="margin-top: 10px;">
+                    {% endif %}
+                    {% if description_2 == 'snow' %}
+                      <img src="{% static 'weather_logos/Снег.png' %}" alt="Снег" width="60" style="margin-top: 10px;">
+                    {% endif %}
+                  </div>
+                  <div class="col" style="margin-top: 20px;">
+                    <h1 style="font-size: 27px;margin-left: 5px;">+{{temp_2}}</h1>
+                  </div>
+                    
+                </div> 
+      
+                    
+                  
+                </div>
+              </div>
+              
+              <div class="col">
+                <h1 style="font-size: 15px;">Жел жлд:{{wind_2}}м/с</h1>
+              </div>
+
+              <div class="col">
+                <h1 style="margin-top: -10px;">17:00</h1>
+              </div>
+            </div>
+          </div> 
+        </div>
+        <div style="width: 135px; height: 135px; background-color: rgb(231, 230, 230); border-radius: 10px; margin-top: -135px; margin-left: 350px;">
+          <div class="container">
+
+            <div class="row-cols-1">
+              <div class="col">
+                <div class="row">
+                  <div class="col-5" >
+                    {% if description_3 == 'few clouds' %}
+                      <img src="{% static 'weather_logos/немного облачно.png'%}" alt="немного облачно" width="60" style="margin-top: 10px;">
+                    {% endif %}
+                    {% if description_3 == 'clear sky' %}
+                      <img src="{% static 'weather_logos/Солнечно.png' %}" alt="Солнечно" width="60" style="margin-top: 10px;">
+                    {% endif %}
+                    {% if description_3 == 'scattered clouds' %}
+                      <img src="{% static 'weather_logos/облачно с происнениями.png' %}" alt="Солнечно с происненеями" width="60" style="margin-top: 10px;">
+                    {% endif %}
+                    {% if description_3 == 'broken clouds' or description_3 == 'overcast clouds' %}
+                      <img src="{% static 'weather_logos/Облачно.png' %}" alt="Облачно" width="60" style="margin-top: 10px;">
+                    {% endif %}
+                    {% if description_3 == 'shower rain' %}
+                      <img src="{% static 'weather_logos/дождь.png' %}" alt="Ливень" width="60" style="margin-top: 10px;">
+                    {% endif %}
+                    {% if description_3 == 'rain' or description_3 == 'light rain' or description_3 == 'moderate rain' or description_3 == 'heavy intensity rain' or description_3 == 'very heavy rain' or description_3 == 'extreme rain' %}
+                      <img src="{% static 'weather_logos/дождь с произнеями.png' %}" alt="Дождь" width="60" style="margin-top: 10px;">
+                    {% endif %}
+                    {% if description_3 == 'thunderstorm' %}
+                      <img src="{% static 'weather_logos/гроза.png' %}" alt="Гроза" width="60" style="margin-top: 10px;">
+                    {% endif %}
+                    {% if description_3 == 'snow' %}
+                      <img src="{% static 'weather_logos/Снег.png' %}" alt="Снег" width="60" style="margin-top: 10px;">
+                    {% endif %}
+                  </div>
+                  <div class="col" style="margin-top: 20px;">
+                    <h1 style="font-size: 27px;margin-left: 5px;">+{{temp_3}}</h1>
+                  </div>
+                    
+                </div> 
+      
+                    
+                  
+                </div>
+              </div>
+              
+              <div class="col" >
+                <h1 style="font-size: 15px;">Жел жлд:{{wind_3}}м/с</h1>
+              </div>
+              <div class="col">
+                <h1 style="margin-top: -10px;">20:00</h1>
+              </div>
+            </div>
+          </div> 
+        </div>
+        <div style="width: 135px; height: 135px; background-color: rgb(231, 230, 230); border-radius: 10px; margin-top: -135px; margin-left: 500px;">
+          <div class="container">
+
+            <div class="row-cols-1">
+              <div class="col">
+                <div class="row">
+                  <div class="col-5" >
+                    {% if description_4 == 'few clouds' %}
+                      <img src="{% static 'weather_logos/немного облачно.png'%}" alt="немного облачно" width="60" style="margin-top: 10px;">
+                    {% endif %}
+                    {% if description_4 == 'clear sky' %}
+                      <img src="{% static 'weather_logos/Солнечно.png' %}" alt="Солнечно" width="60" style="margin-top: 10px;">
+                    {% endif %}
+                    {% if description_4 == 'scattered clouds' %}
+                      <img src="{% static 'weather_logos/облачно с происнениями.png' %}" alt="Солнечно с происненеями" width="60" style="margin-top: 10px;">
+                    {% endif %}
+                    {% if description_4 == 'broken clouds' or description_4 == 'overcast clouds' %}
+                      <img src="{% static 'weather_logos/Облачно.png' %}" alt="Облачно" width="60" style="margin-top: 10px;">
+                    {% endif %}
+                    {% if description_4 == 'shower rain' %}
+                      <img src="{% static 'weather_logos/дождь.png' %}" alt="Ливень" width="60" style="margin-top: 10px;">
+                    {% endif %}
+                    {% if description_4 == 'rain' or description_4 == 'light rain' or description_4 == 'moderate rain' or description_4 == 'heavy intensity rain' or description_4 == 'very heavy rain' or description_4 == 'extreme rain' %}
+                      <img src="{% static 'weather_logos/дождь с произнеями.png' %}" alt="Дождь" width="60" style="margin-top: 10px;">
+                    {% endif %}
+                    {% if description_4 == 'thunderstorm' %}
+                      <img src="{% static 'weather_logos/гроза.png' %}" alt="Гроза" width="60" style="margin-top: 10px;">
+                    {% endif %}
+                    {% if description_4 == 'snow' %}
+                      <img src="{% static 'weather_logos/Снег.png' %}" alt="Снег" width="60" style="margin-top: 10px;">
+                    {% endif %}
+                  </div>
+                  <div class="col" style="margin-top: 20px;">
+                    <h1 style="font-size: 27px;margin-left: 5px;">+{{temp_4}}</h1>
+                  </div>
+                    
+                </div> 
+      
+                    
+                  
+                </div>
+              </div>
+              
+              <div class="col" >
+                <h1 style="font-size: 15px;">Жел жлд:{{wind_4}}м/с</h1>
+              </div>
+              <div class="col">
+                <h1 style="margin-top: -10px;">23:00</h1>
+              </div>
+            </div>
+          </div> 
+        </div>     
+      {% endif %}
+      {% if dt_1 == '17:00' %}
+        <div style="width: 135px; height: 135px; background-color: rgb(231, 230, 230); border-radius: 10px;">
+          <div class="container">
+
+            <div class="row-cols-1">
+              <div class="col">
+                <div class="row">
+                  <div class="col-5" >
+                    {% if description_1 == 'few clouds' %}
+                      <img src="{% static 'weather_logos/немного облачно.png'%}" alt="немного облачно" width="60" style="margin-top: 10px;">
+                    {% endif %}
+                    {% if description_1 == 'clear sky' %}
+                      <img src="{% static 'weather_logos/Солнечно.png' %}" alt="Солнечно" width="60" style="margin-top: 10px;">
+                    {% endif %}
+                    {% if description_1 == 'scattered clouds' %}
+                      <img src="{% static 'weather_logos/облачно с происнениями.png' %}" alt="Солнечно с происненеями" width="60" style="margin-top: 10px;">
+                    {% endif %}
+                    {% if description_1 == 'broken clouds' or description_1 == 'overcast clouds' %}
+                      <img src="{% static 'weather_logos/Облачно.png' %}" alt="Облачно" width="60" style="margin-top: 10px;">
+                    {% endif %}
+                    {% if description_1 == 'shower rain' %}
+                      <img src="{% static 'weather_logos/дождь.png' %}" alt="Ливень" width="60" style="margin-top: 10px;">
+                    {% endif %}
+                    {% if description_1 == 'rain' or description_1 == 'light rain' or description_1 == 'moderate rain' or description_1 == 'heavy intensity rain' or description_1 == 'very heavy rain' or description == 'extreme rain' %}
+                      <img src="{% static 'weather_logos/дождь с произнеями.png' %}" alt="Дождь" width="60" style="margin-top: 10px;">
+                    {% endif %}
+                    {% if description_1 == 'thunderstorm' %}
+                      <img src="{% static 'weather_logos/гроза.png' %}" alt="Гроза" width="60" style="margin-top: 10px;">
+                    {% endif %}
+                    {% if description_1 == 'snow' %}
+                      <img src="{% static 'weather_logos/Снег.png' %}" alt="Снег" width="60" style="margin-top: 10px;">
+                    {% endif %}
+                  </div>
+                  <div class="col" style="margin-top: 20px;">
+                    <h1 style="font-size: 27px;margin-left: 5px;">+{{temp_1}}</h1>
+                  </div>
+                    
+                </div> 
+      
+                    
+                  
+                </div>
+              </div>
+            
+              <div class="col"  >
+                <h1 style="font-size: 15px;">Жел жлд:{{wind_1}}м/с</h1>
+              </div>
+              <div class="col">
+                <h1 style="margin-top: -10px;">17:00</h1>
+              </div>
+            </div>
+          </div> 
+        </div>
+        <div style="width: 135px; height: 135px; background-color: rgb(231, 230, 230); border-radius: 10px; margin-top: -135px; margin-left: 200px;">
+          <div class="container">
+
+            <div class="row-cols-1">
+              <div class="col">
+                <div class="row">
+                  <div class="col-5" >
+                    {% if description_2 == 'few clouds' %}
+                      <img src="{% static 'weather_logos/немного облачно.png'%}" alt="немного облачно" width="60" style="margin-top: 10px;">
+                    {% endif %}
+                    {% if description_2 == 'clear sky' %}
+                      <img src="{% static 'weather_logos/Солнечно.png' %}" alt="Солнечно" width="60" style="margin-top: 10px;">
+                    {% endif %}
+                    {% if description_2 == 'scattered clouds' %}
+                      <img src="{% static 'weather_logos/облачно с происнениями.png' %}" alt="Солнечно с происненеями" width="60" style="margin-top: 10px;">
+                    {% endif %}
+                    {% if description_2 == 'broken clouds' or description_2 == 'overcast clouds' %}
+                      <img src="{% static 'weather_logos/Облачно.png' %}" alt="Облачно" width="60" style="margin-top: 10px;">
+                    {% endif %}
+                    {% if description_2 == 'shower rain' %}
+                      <img src="{% static 'weather_logos/дождь.png' %}" alt="Ливень" width="60" style="margin-top: 10px;">
+                    {% endif %}
+                    {% if description_2 == 'rain' or description_2 == 'light rain' or description_2 == 'moderate rain' or description_2 == 'heavy intensity rain' or description_2 == 'very heavy rain' or description_2 == 'extreme rain' %}
+                      <img src="{% static 'weather_logos/дождь с произнеями.png' %}" alt="Дождь" width="60" style="margin-top: 10px;">
+                    {% endif %}
+                    {% if description_2 == 'thunderstorm' %}
+                      <img src="{% static 'weather_logos/гроза.png' %}" alt="Гроза" width="60" style="margin-top: 10px;">
+                    {% endif %}
+                    {% if description_2 == 'snow' %}
+                      <img src="{% static 'weather_logos/Снег.png' %}" alt="Снег" width="60" style="margin-top: 10px;">
+                    {% endif %}
+                  </div>
+                  <div class="col" style="margin-top: 20px;">
+                    <h1 style="font-size: 27px;margin-left: 5px;">+{{temp_2}}</h1>
+                  </div>
+                    
+                </div> 
+      
+                    
+                  
+                </div>
+              </div>
+              
+              <div class="col">
+                <h1 style="font-size: 15px;">Жел жлд:{{wind_2}}м/с</h1>
+              </div>
+
+              <div class="col">
+                <h1 style="margin-top: -10px;">20:00</h1>
+              </div>
+            </div>
+          </div> 
+        </div>
+        <div style="width: 135px; height: 135px; background-color: rgb(231, 230, 230); border-radius: 10px; margin-top: -135px; margin-left: 350px;">
+          <div class="container">
+
+            <div class="row-cols-1">
+              <div class="col">
+                <div class="row">
+                  <div class="col-5" >
+                    {% if description_3 == 'few clouds' %}
+                      <img src="{% static 'weather_logos/немного облачно.png'%}" alt="немного облачно" width="60" style="margin-top: 10px;">
+                    {% endif %}
+                    {% if description_3 == 'clear sky' %}
+                      <img src="{% static 'weather_logos/Солнечно.png' %}" alt="Солнечно" width="60" style="margin-top: 10px;">
+                    {% endif %}
+                    {% if description_3 == 'scattered clouds' %}
+                      <img src="{% static 'weather_logos/облачно с происнениями.png' %}" alt="Солнечно с происненеями" width="60" style="margin-top: 10px;">
+                    {% endif %}
+                    {% if description_3 == 'broken clouds' or description_3 == 'overcast clouds' %}
+                      <img src="{% static 'weather_logos/Облачно.png' %}" alt="Облачно" width="60" style="margin-top: 10px;">
+                    {% endif %}
+                    {% if description_3 == 'shower rain' %}
+                      <img src="{% static 'weather_logos/дождь.png' %}" alt="Ливень" width="60" style="margin-top: 10px;">
+                    {% endif %}
+                    {% if description_3 == 'rain' or description_3 == 'light rain' or description_3 == 'moderate rain' or description_3 == 'heavy intensity rain' or description_3 == 'very heavy rain' or description_3 == 'extreme rain' %}
+                      <img src="{% static 'weather_logos/дождь с произнеями.png' %}" alt="Дождь" width="60" style="margin-top: 10px;">
+                    {% endif %}
+                    {% if description_3 == 'thunderstorm' %}
+                      <img src="{% static 'weather_logos/гроза.png' %}" alt="Гроза" width="60" style="margin-top: 10px;">
+                    {% endif %}
+                    {% if description_3 == 'snow' %}
+                      <img src="{% static 'weather_logos/Снег.png' %}" alt="Снег" width="60" style="margin-top: 10px;">
+                    {% endif %}
+                  </div>
+                  <div class="col" style="margin-top: 20px;">
+                    <h1 style="font-size: 27px;margin-left: 5px;">+{{temp_3}}</h1>
+                  </div>
+                    
+                </div> 
+      
+                    
+                  
+                </div>
+              </div>
+              
+              <div class="col" >
+                <h1 style="font-size: 15px;">Жел жлд:{{wind_3}}м/с</h1>
+              </div>
+              <div class="col">
+                <h1 style="margin-top: -10px;">23:00</h1>
+              </div>
+            </div>
+          </div> 
+        </div>
+            
+      {% endif %}
+      {% if dt_1 == '20:00' %}
+        <div style="width: 135px; height: 135px; background-color: rgb(231, 230, 230); border-radius: 10px;">
+          <div class="container">
+
+            <div class="row-cols-1">
+              <div class="col">
+                <div class="row">
+                  <div class="col-5" >
+                    {% if description_1 == 'few clouds' %}
+                      <img src="{% static 'weather_logos/немного облачно.png'%}" alt="немного облачно" width="60" style="margin-top: 10px;">
+                    {% endif %}
+                    {% if description_1 == 'clear sky' %}
+                      <img src="{% static 'weather_logos/Солнечно.png' %}" alt="Солнечно" width="60" style="margin-top: 10px;">
+                    {% endif %}
+                    {% if description_1 == 'scattered clouds' %}
+                      <img src="{% static 'weather_logos/облачно с происнениями.png' %}" alt="Солнечно с происненеями" width="60" style="margin-top: 10px;">
+                    {% endif %}
+                    {% if description_1 == 'broken clouds' or description_1 == 'overcast clouds' %}
+                      <img src="{% static 'weather_logos/Облачно.png' %}" alt="Облачно" width="60" style="margin-top: 10px;">
+                    {% endif %}
+                    {% if description_1 == 'shower rain' %}
+                      <img src="{% static 'weather_logos/дождь.png' %}" alt="Ливень" width="60" style="margin-top: 10px;">
+                    {% endif %}
+                    {% if description_1 == 'rain' or description_1 == 'light rain' or description_1 == 'moderate rain' or description_1 == 'heavy intensity rain' or description_1 == 'very heavy rain' or description == 'extreme rain' %}
+                      <img src="{% static 'weather_logos/дождь с произнеями.png' %}" alt="Дождь" width="60" style="margin-top: 10px;">
+                    {% endif %}
+                    {% if description_1 == 'thunderstorm' %}
+                      <img src="{% static 'weather_logos/гроза.png' %}" alt="Гроза" width="60" style="margin-top: 10px;">
+                    {% endif %}
+                    {% if description_1 == 'snow' %}
+                      <img src="{% static 'weather_logos/Снег.png' %}" alt="Снег" width="60" style="margin-top: 10px;">
+                    {% endif %}
+                  </div>
+                  <div class="col" style="margin-top: 20px;">
+                    <h1 style="font-size: 27px;margin-left: 5px;">+{{temp_1}}</h1>
+                  </div>
+                    
+                </div> 
+      
+                    
+                  
+                </div>
+              </div>
+            
+              <div class="col"  >
+                <h1 style="font-size: 15px;">Жел жлд:{{wind_1}}м/с</h1>
+              </div>
+              <div class="col">
+                <h1 style="margin-top: -10px;">20:00</h1>
+              </div>
+            </div>
+          </div> 
+        </div>
+        <div style="width: 135px; height: 135px; background-color: rgb(231, 230, 230); border-radius: 10px; margin-top: -135px; margin-left: 200px;">
+          <div class="container">
+
+            <div class="row-cols-1">
+              <div class="col">
+                <div class="row">
+                  <div class="col-5" >
+                    {% if description_2 == 'few clouds' %}
+                      <img src="{% static 'weather_logos/немного облачно.png'%}" alt="немного облачно" width="60" style="margin-top: 10px;">
+                    {% endif %}
+                    {% if description_2 == 'clear sky' %}
+                      <img src="{% static 'weather_logos/Солнечно.png' %}" alt="Солнечно" width="60" style="margin-top: 10px;">
+                    {% endif %}
+                    {% if description_2 == 'scattered clouds' %}
+                      <img src="{% static 'weather_logos/облачно с происнениями.png' %}" alt="Солнечно с происненеями" width="60" style="margin-top: 10px;">
+                    {% endif %}
+                    {% if description_2 == 'broken clouds' or description_2 == 'overcast clouds' %}
+                      <img src="{% static 'weather_logos/Облачно.png' %}" alt="Облачно" width="60" style="margin-top: 10px;">
+                    {% endif %}
+                    {% if description_2 == 'shower rain' %}
+                      <img src="{% static 'weather_logos/дождь.png' %}" alt="Ливень" width="60" style="margin-top: 10px;">
+                    {% endif %}
+                    {% if description_2 == 'rain' or description_2 == 'light rain' or description_2 == 'moderate rain' or description_2 == 'heavy intensity rain' or description_2 == 'very heavy rain' or description_2 == 'extreme rain' %}
+                      <img src="{% static 'weather_logos/дождь с произнеями.png' %}" alt="Дождь" width="60" style="margin-top: 10px;">
+                    {% endif %}
+                    {% if description_2 == 'thunderstorm' %}
+                      <img src="{% static 'weather_logos/гроза.png' %}" alt="Гроза" width="60" style="margin-top: 10px;">
+                    {% endif %}
+                    {% if description_2 == 'snow' %}
+                      <img src="{% static 'weather_logos/Снег.png' %}" alt="Снег" width="60" style="margin-top: 10px;">
+                    {% endif %}
+                  </div>
+                  <div class="col" style="margin-top: 20px;">
+                    <h1 style="font-size: 27px;margin-left: 5px;">+{{temp_2}}</h1>
+                  </div>
+                    
+                </div> 
+      
+                    
+                  
+                </div>
+              </div>
+              
+              <div class="col">
+                <h1 style="font-size: 15px;">Жел жлд:{{wind_2}}м/с</h1>
+              </div>
+
+              <div class="col">
+                <h1 style="margin-top: -10px;">23:00</h1>
+              </div>
+            </div>
+          </div> 
+        </div>
+            
+      {% endif %}
+      {% if dt_1 == '23:00' %}
+        <div style="width: 135px; height: 135px; background-color: rgb(231, 230, 230); border-radius: 10px;">
+          <div class="container">
+
+            <div class="row-cols-1">
+              <div class="col">
+                <div class="row">
+                  <div class="col-5" >
+                    {% if description_1 == 'few clouds' %}
+                      <img src="{% static 'weather_logos/немного облачно.png'%}" alt="немного облачно" width="60" style="margin-top: 10px;">
+                    {% endif %}
+                    {% if description_1 == 'clear sky' %}
+                      <img src="{% static 'weather_logos/Солнечно.png' %}" alt="Солнечно" width="60" style="margin-top: 10px;">
+                    {% endif %}
+                    {% if description_1 == 'scattered clouds' %}
+                      <img src="{% static 'weather_logos/облачно с происнениями.png' %}" alt="Солнечно с происненеями" width="60" style="margin-top: 10px;">
+                    {% endif %}
+                    {% if description_1 == 'broken clouds' or description_1 == 'overcast clouds' %}
+                      <img src="{% static 'weather_logos/Облачно.png' %}" alt="Облачно" width="60" style="margin-top: 10px;">
+                    {% endif %}
+                    {% if description_1 == 'shower rain' %}
+                      <img src="{% static 'weather_logos/дождь.png' %}" alt="Ливень" width="60" style="margin-top: 10px;">
+                    {% endif %}
+                    {% if description_1 == 'rain' or description_1 == 'light rain' or description_1 == 'moderate rain' or description_1 == 'heavy intensity rain' or description_1 == 'very heavy rain' or description == 'extreme rain' %}
+                      <img src="{% static 'weather_logos/дождь с произнеями.png' %}" alt="Дождь" width="60" style="margin-top: 10px;">
+                    {% endif %}
+                    {% if description_1 == 'thunderstorm' %}
+                      <img src="{% static 'weather_logos/гроза.png' %}" alt="Гроза" width="60" style="margin-top: 10px;">
+                    {% endif %}
+                    {% if description_1 == 'snow' %}
+                      <img src="{% static 'weather_logos/Снег.png' %}" alt="Снег" width="60" style="margin-top: 10px;">
+                    {% endif %}
+                  </div>
+                  <div class="col" style="margin-top: 20px;">
+                    <h1 style="font-size: 27px;margin-left: 5px;">+{{temp_1}}</h1>
+                  </div>
+                    
+                </div> 
+      
+                    
+                  
+                </div>
+              </div>
+            
+              <div class="col"  >
+                <h1 style="font-size: 15px;">Жел жлд:{{wind_1}}м/с</h1>
+              </div>
+              <div class="col">
+                <h1 style="margin-top: -10px;">23:00</h1>
+              </div>
+            </div>
+          </div> 
+        </div>
+        
+            
+      {% endif %}
+    </div>
+    
+    
+  <body>
+   
+</html>

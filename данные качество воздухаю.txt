@@ -1,0 +1,6 @@
+данные качество воздуха
+https://api.waqi.info/feed/A217510/?token=6ed024b9165f16b154982ceca71f3c108a7e6047
+
+данные погоды
+https://api.openweathermap.org/data/2.5/weather?lat=47.1167&lon=51.8833&appid=251257bf514f824f0e370a8d9aa1fa7b&units=metric&lang=ru
+https://api.openweathermap.org/data/2.5/forecast?lat=47.1167&lon=51.8833&appid=251257bf514f824f0e370a8d9aa1fa7b&units=metric

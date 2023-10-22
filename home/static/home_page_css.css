@@ -1,0 +1,84 @@
+.square {
+  background-color: rgba(20, 255, 129, 1);
+  width: 100%;
+  height: 300px;
+  border-radius: 10px;
+}
+
+.other_square {
+  background-color: rgba(35, 209, 116, 1);
+  width: 240px;
+  height: 240px;
+  border-radius: 10px;
+  margin-top: -295px;
+  margin-left: 30px;
+}
+
+.text-style {
+  font-size: 100px;
+  margin-left: 10px;
+}
+
+.aqi-text {
+  font-size: 70px;
+  margin-left: 10px;
+}
+.us-text {
+  font-size: 30px;
+  margin-top: -50px;
+  margin-left: 170px;
+}
+
+.text-air_quality {
+  margin-top: -245px;
+  margin-left: 300px;
+  font-size: 50px;
+}
+
+.date {
+  margin-left: 300px;
+  margin-top: -3px;
+}
+
+.time {
+  margin-left: 460px;
+  margin-top: -41px;
+}
+
+.weather {
+  margin-left: 300px;
+  margin-top: 4px;
+  font-size: 100px;
+}
+
+.square-yellow {
+  background-color: rgba(255, 237, 0, 1);
+  width: 100%;
+  height: 300px;
+  border-radius: 10px;
+}
+
+.other_square-yellow {
+  background-color: rgba(230, 214, 10, 1);
+  width: 240px;
+  height: 240px;
+  border-radius: 10px;
+  margin-top: -295px;
+  margin-left: 30px;
+}
+
+.square-orange {
+  background-color: rgba(255, 190, 73, 1);
+  width: 100%;
+  height: 300px;
+  border-radius: 10px;
+}
+
+.other_square-orange {
+  background-color: rgba(240, 167, 34, 1);
+  width: 240px;
+  height: 240px;
+  border-radius: 10px;
+  margin-top: -295px;
+  margin-left: 30px;
+}
