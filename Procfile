@@ -1,1 +1,1 @@
-web: gunicorn Air_quality.wsgi:application --log-file
+web: gunicorn Air_quality.wsgi -log-file -
