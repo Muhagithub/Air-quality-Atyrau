@@ -1,0 +1,162 @@
+@media (max-width: 991px) {
+  .weather {
+    font-size: 80px;
+  }
+  .text-air_quality {
+    font-size: 40px;
+  }
+  .text-which-pm25 {
+    margin-left: 30px;
+  }
+  .pm25-text {
+    margin-left: 30px;
+  }
+}
+@media (max-width: 766px) {
+  .square {
+    height: 400px;
+  }
+  .square-yellow {
+    height: 400px;
+  }
+  .other_square {
+    margin-top: -400px;
+    width: 200px;
+    height: 220px;
+  }
+  .other_square-yellow {
+    width: 200px;
+    height: 220px;
+    margin-top: -400px;
+  }
+  .text-pollutans {
+    margin-top: 100px;
+  }
+  .weather {
+    margin-top: 70px;
+    margin-left: 25px;
+    font-size: 100px;
+  }
+  .date {
+    margin-top: 10px;
+    font-size: 27px;
+    margin-left: 250px;
+  }
+  .time {
+    margin-top: 10px;
+    margin-left: 250px;
+    font-size: 27px;
+  }
+  .text-air_quality {
+    margin-left: 250px;
+    font-size: 35px;
+    margin-top: -230px;
+  }
+  .us-text {
+    margin-left: 140px;
+  }
+}
+@media (max-width: 480px) {
+  .text-style {
+    font-size: 80px;
+  }
+  .aqi-text {
+    font-size: 50px;
+  }
+  .us-text {
+    font-size: 20px;
+    margin-top: -37px;
+    margin-left: 110px;
+  }
+  .other_square {
+    width: 160px;
+    height: 180px;
+  }
+  .other_square-yellow {
+    width: 160px;
+    height: 180px;
+  }
+  .text-air_quality {
+    margin-top: -185px;
+    margin-left: 210px;
+    font-size: 30px;
+  }
+  .time {
+    font-size: 23px;
+    margin-left: 210px;
+  }
+  .date {
+    font-size: 23px;
+    margin-left: 210px;
+  }
+  .weather {
+    font-size: 80px;
+    margin-top: 30px;
+  }
+  .square {
+    height: 300px;
+  }
+  .square-yellow {
+    height: 300px;
+  }
+  .other_square-yellow {
+    margin-top: -300px;
+  }
+  .other_square {
+    margin-top: -300px;
+  }
+}
+
+@media (max-width: 415px) {
+  .text-air_quality {
+    font-size: 25px;
+    margin-top: -185px;
+  }
+  .date {
+    font-size: 18px;
+  }
+  .time {
+    font-size: 18px;
+  }
+  .weather {
+    margin-top: 50px;
+  }
+}
+
+@media (max-width: 384px) {
+  .text-style {
+    font-size: 70px;
+  }
+  .aqi-text {
+    font-size: 40px;
+  }
+  .us-text {
+    font-size: 15px;
+    margin-left: 85px;
+    margin-top: -30px;
+  }
+  .other_square {
+    height: 150px;
+    width: 130px;
+  }
+  .other_square-yellow {
+    height: 150px;
+    width: 130px;
+  }
+  .text-air_quality {
+    margin-top: -155px;
+    margin-left: 175px;
+    font-size: 22px;
+  }
+  .date {
+    margin-left: 175px;
+    font-size: 18px;
+  }
+  .time {
+    margin-left: 175px;
+    font-size: 18px;
+  }
+  .weather {
+    font-size: 60px;
+  }
+}
