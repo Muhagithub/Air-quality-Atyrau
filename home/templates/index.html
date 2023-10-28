@@ -22,8 +22,12 @@
       content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
     />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Атырау ауа сапасы</title>
+    <title>Главная страница</title>
     <link rel="stylesheet" href="{% static 'home_page_css.css' %}" />
+    <link rel="stylesheet" href="{% static 'adaptaition-index.css' %}" />
+    
+
+    
     <style>
       
       @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
@@ -110,35 +114,145 @@
         color: white;
       }
       .square-pm25{
-        width: 600px;
+        width: 680px;
         height: 120px;
         background-color: rgba(20, 255, 129, 1);
         margin-top: -130px;
+        border-radius: 10px;
       }
       .square-pm25-yellow{
-        width: 640px;
+        width: 720px;
         height: 120px;
         background-color: rgba(255, 237, 0, 1);
         margin-top: -130px;
+        border-radius: 10px;
       }
       .square-pm25-orange{
-        width: 1080px;
+        width: 1160px;
         height: 120px;
         background-color: rgba(255, 190, 73, 1);
         margin-top: -130px;
+        border-radius: 10px;
       }
       .square-pm25-red{
-        width: 930px;
+        width: 1010px;
         height: 120px;
         background-color: rgba(255, 91, 91, 1) ;
         margin-top: -130px;
+        border-radius: 10px;
         
+      }
+      .date-pm25 {
+        font-size: 120px;
+      }
+      .date-pm10 {
+        font-size: 120px;
       }
       
 
       
     </style>
-    
+    <style>
+      @media (max-width: 766px) {
+        .text-pollutans {
+          font-size: 60px;
+        }
+        .pm25-img {
+          width: 100px;
+        }
+        .pm25-text {
+          font-size: 70px;
+        }
+        .text-which-pm25 {
+          font-size: 90px;
+        }
+        .date-pm25 {
+          font-size: 100px;
+        }
+        .date-pm10 {
+          font-size: 100px;
+        }
+        .square-pm25 {
+          width: 450px;
+        }
+        .square-pm25-yellow {
+          width: 450px;
+        }
+        .grey-square {
+          height: 600px;
+        }
+
+        
+      }
+      @media (max-width:496px) {
+        .pm25-img {
+          width: 90px;
+        }
+        .pm25-text {
+          font-size: 50px;
+        }
+        .date-pm25 {
+          font-size: 80px;
+        }
+        .date-pm10 {
+          font-size: 80px;
+        }
+        .text-which-pm25 {
+          font-size: 70px;
+        }
+        .square-pm25 {
+          height: 100px;
+          width: 350px;
+          margin-top: -105px;
+        }
+        .square-pm25-yellow {
+          height: 100px;
+          width: 380px;
+          margin-top: -105px;
+        }
+        .grey-square {
+          height: 530px;
+        }
+      }
+
+      @media (max-width:425px) {
+        .pm25-img {
+          width: 70px;
+        }
+        .pm25-text {
+          font-size: 50px;
+        }
+        .date-pm10 {
+          font-size: 60px;
+        }
+        .date-pm25 {
+          font-size: 60px;
+        }
+        .text-which-pm25 {
+          font-size: 50px;
+        }
+        .square-pm25 {
+          height: 70px;
+          width: 300px;
+          margin-top: -78px;
+        }
+        .square-pm25-yellow {
+          height: 70px;
+          width: 300px;
+          margin-top: -78px;
+        }
+      }
+
+      @media (max-width:346px) {
+        .square-pm25 {
+          width: 260px;
+        }
+        .square-pm25-yellow {
+          width: 270px;
+        }
+      }
+
+    </style>
   
   </head>
   <body>
@@ -240,11 +354,11 @@
         {% if pm25 <= 50 %}   
         <div class="container">
           <div class="row">
-            <div class="col-md-2">
+            <div class="col-md-2 col-sm-2">
               <img src="{% static 'pm10_дым.png' %}" alt="smoke" width="130" class="pm25-img">
 
             </div>
-            <div class="col-md-2">
+            <div class="col-md-2 col-sm-2">
               <h1 class="pm25-text">PM2.5:</h1>
             </div>
 
@@ -252,7 +366,7 @@
           
           <div class="row">
             <div class="col-md-2">
-              <h1 style="font-size: 120px">{{pm25}}</h1>
+              <h1 class="date-pm25">{{pm25}}</h1>
             </div>
             <div class="col-md-2" >
             
@@ -273,21 +387,21 @@
         {% if pm25 <= 100 and pm25 >= 51 %}   
           <div class="container">
             <div class="row">
-              <div class="col-md-2">
+              <div class="col-2">
                 <img src="{% static 'pm10_дым.png' %}" alt="smoke" width="130" class="pm25-img">
 
               </div>
-              <div class="col-md-2">
+              <div class="col-2">
                 <h1 class="pm25-text">PM2.5:</h1>
               </div>
 
             </div>
             
             <div class="row">
-              <div class="col-md-2">
-                <h1 style="font-size: 120px">{{pm25}}</h1>
+              <div class="col-2">
+                <h1 class="date-pm25">{{pm25}}</h1>
               </div>
-              <div class="col-md-2" >
+              <div class="col-2" >
               
                 <h1 class="text-which-pm25">Орташа</h1>
               </div>
@@ -304,11 +418,11 @@
         {% if pm25 <= 150 and pm25 >= 101 %}   
           <div class="container">
             <div class="row">
-              <div class="col-md-2">
+              <div class="col-2">
                 <img src="{% static 'pm10_дым.png' %}" alt="smoke" width="130" class="pm25-img">
 
               </div>
-              <div class="col-md-2">
+              <div class="col-2">
                 <h1 class="pm25-text">PM2.5:</h1>
               </div>
 
@@ -316,9 +430,9 @@
             
             <div class="row">
               <div class="col-md-2">
-                <h1 style="font-size: 120px">{{pm25}}</h1>
+                <h1 class="date-pm25">{{pm25}}</h1>
               </div>
-              <div class="col-md-10" >
+              <div class="col-10" >
               
                 <h1 class="text-which-pm25-orange">Сезімтал топтарға зиянды</h1>
               </div>
@@ -338,21 +452,21 @@
         {% if pm25 <= 200 and pm25 >= 151 %}   
           <div class="container">
             <div class="row">
-              <div class="col-md-2">
+              <div class="col-2">
                 <img src="{% static 'pm10_дым.png' %}" alt="smoke" width="130" class="pm25-img">
 
               </div>
-              <div class="col-md-2">
+              <div class="col-2">
                 <h1 class="pm25-text">PM2.5:</h1>
               </div>
 
             </div>
             
             <div class="row">
-              <div class="col-md-2">
+              <div class="col-2">
                 <h1 style="font-size: 120px;color: white;">{{pm25}}</h1>
               </div>
-              <div class="col-md-9" >
+              <div class="col-9" >
               
                 <h1 class="text-which-pm25-red" >Денсаулыққа қауыпті</h1>
               </div>
@@ -369,21 +483,21 @@
         <div class="container" style="margin-top: 60px;">
           {% if pm10 <= 50 %}
             <div class="row">
-              <div class="col-md-2">
+              <div class="col-2">
                 <img src="{% static 'pm10_дым.png' %}" alt="smoke" width="130" class="pm25-img">
 
               </div>
-              <div class="col-md-2">
+              <div class="col-2">
                 <h1 class="pm25-text">PM10:</h1>
               </div>
 
             </div>
             
             <div class="row">
-              <div class="col-md-2">
-                <h1 style="font-size: 120px">{{pm10}}</h1>
+              <div class="col-2">
+                <h1 class="date-pm10">{{pm10}}</h1>
               </div>
-              <div class="col-md-2" >
+              <div class="col-2" >
               
                 <h1 class="text-which-pm25">Жақсы</h1>
               </div>
@@ -396,21 +510,21 @@
           {% endif %}
           {% if pm10 <= 100  and pm10 >= 51%}
             <div class="row">
-              <div class="col-md-2">
+              <div class="col-2">
                 <img src="{% static 'pm10_дым.png' %}" alt="smoke" width="130" class="pm25-img">
 
               </div>
-              <div class="col-md-2">
+              <div class="col-2">
                 <h1 class="pm25-text">PM10:</h1>
               </div>
 
             </div>
             
             <div class="row">
-              <div class="col-md-2">
-                <h1 style="font-size: 120px">{{pm10}}</h1>
+              <div class="col-2">
+                <h1 class="date-pm10">{{pm10}}</h1>
               </div>
-              <div class="col-md-2" >
+              <div class="col-2" >
               
                 <h1 class="text-which-pm25">Орташа</h1>
               </div>
@@ -423,21 +537,21 @@
           {% endif %}
           {% if pm10 <= 150  and pm10 >= 101%}
             <div class="row">
-              <div class="col-md-2">
+              <div class="col-2">
                 <img src="{% static 'pm10_дым.png' %}" alt="smoke" width="130" class="pm25-img">
 
               </div>
-              <div class="col-md-2">
+              <div class="col-2">
                 <h1 class="pm25-text">PM10:</h1>
               </div>
 
             </div>
             
             <div class="row">
-              <div class="col-md-2">
-                <h1 style="font-size: 120px">{{pm10}}</h1>
+              <div class="col-2">
+                <h1 class="date-pm10">{{pm10}}</h1>
               </div>
-              <div class="col-md-10" >
+              <div class="col-10" >
               
                 <h1 class="text-which-pm25-orange">Сезімтал топтарға қауыпті</h1>
               </div>
@@ -450,21 +564,21 @@
         {% endif %}
         {% if pm10 <= 200  and pm10 >= 151%}
           <div class="row">
-            <div class="col-md-2">
+            <div class="col-2">
               <img src="{% static 'pm10_дым.png' %}" alt="smoke" width="130" class="pm25-img">
 
             </div>
-            <div class="col-md-2">
+            <div class="col-2">
               <h1 class="pm25-text">PM10:</h1>
             </div>
 
           </div>
           
           <div class="row">
-            <div class="col-md-2">
+            <div class="col-2">
               <h1 style="font-size: 120px; color: white;">{{pm10}}</h1>
             </div>
-            <div class="col-md-10" >
+            <div class="col-10" >
         
               <h1 class="text-which-pm25-red" >Денсаулыққа қауыпті</h1>
             </div>
