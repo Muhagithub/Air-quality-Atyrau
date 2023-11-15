@@ -65,9 +65,11 @@ def weather(request):
         + " мм рт. ст."
     )
     sunrise_data = datetime.fromtimestamp(json_data_weather["sys"]["sunrise"])
-    sunrise = sunrise_data.strftime("%H:%M")
+    sunrise_data_2 = sunrise_data + timedelta(hours=5)
+    sunrise = sunrise_data_2.strftime("%H:%M")
     sunset_data = datetime.fromtimestamp(json_data_weather["sys"]["sunset"])
-    sunset = sunset_data.strftime("%H:%M")
+    sunset_data_2 = sunset_data + timedelta(hours=5)
+    sunset = sunset_data_2.strftime("%H:%M")
 
     description_text = json_data_weather["weather"][0]["description"]
     # ауа райы болжамының ақпаратарын анықтау
