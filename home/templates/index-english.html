@@ -1,0 +1,1036 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'favicon/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicon/favicon-16x16.png' %}">
+    <link rel="manifest" href="{% static 'favicon/site.webmanifest' %}">
+    <link rel="mask-icon" href="{% static 'favicon/safari-pinned-tab.svg' }" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+      crossorigin="anonymous"
+    />
+
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Главная страница</title>
+    <link rel="stylesheet" href="{% static 'home_page_css.css' %}" />
+    <link rel="stylesheet" href="{% static 'adaptaition-index.css' %}" />
+    
+
+    
+    <style>
+      
+      @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
+
+
+      .weather-white {
+        margin-left: 300px;
+        margin-top: 40px;
+        font-size: 65px;
+        line-height: 60px;
+        width: 700px;
+        color: white;
+      }
+      .square-red {
+        background-color: rgba(255, 91, 91, 1);
+        width: 100%;
+        height: 300px;
+        border-radius: 10px;
+        color: white;
+      }
+
+      .other_square-red {
+        background-color: rgba(224, 53, 53, 1);
+        width: 240px;
+        height: 240px;
+        border-radius: 10px;
+        margin-top: -295px;
+        margin-left: 30px;
+        color: white;
+      }
+      .text-air_quality-white{
+        margin-top: -245px;
+        margin-left: 300px;
+        font-size: 50px;
+        color: white;
+      }
+      
+      .date-white {
+        margin-left: 300px;
+        margin-top: -3px;
+        color:white;
+      }
+
+      .time-white {
+        margin-left: 460px;
+        margin-top: -41px;
+        color:white
+      }
+      
+            
+    </style>
+    <style>
+      .text-pollutans {
+        margin-top: 100px;
+        font-size: 100px;
+      }
+      .grey-square {
+        background-color: rgb(231, 230, 230);
+        width: 100%;
+        height: 700px;
+        border-radius: 10px;
+      }
+      .pm25-img{
+        margin-top: 30px;
+      }
+      .pm25-text{
+        margin-top: 30px;
+        font-size: 90px;
+        
+      }
+      .text-which-pm25 {
+        font-size: 120px;
+      }
+      .text-which-pm25-orange{
+        font-size: 70px;
+        margin-top: 30px;
+        margin-left: 20px;
+        
+      }
+      .text-which-pm25-red {
+        font-size: 70px;
+        margin-top: 30px;
+        margin-left: 20px;
+        color: white;
+      }
+      .square-pm25{
+        width: 680px;
+        height: 120px;
+        background-color: rgba(20, 255, 129, 1);
+        margin-top: -130px;
+        border-radius: 10px;
+      }
+      .square-pm25-yellow{
+        width: 720px;
+        height: 120px;
+        background-color: rgba(255, 237, 0, 1);
+        margin-top: -130px;
+        border-radius: 10px;
+      }
+      .square-pm25-orange{
+        width: 1160px;
+        height: 120px;
+        background-color: rgba(255, 190, 73, 1);
+        margin-top: -130px;
+        border-radius: 10px;
+      }
+      .square-pm25-red{
+        width: 1010px;
+        height: 120px;
+        background-color: rgba(255, 91, 91, 1) ;
+        margin-top: -130px;
+        border-radius: 10px;
+        
+      }
+      .date-pm25 {
+        font-size: 120px;
+      }
+      .date-pm10 {
+        font-size: 120px;
+      }
+      
+
+      
+    </style>
+    <style>
+      @media (max-width: 766px) {
+        .text-pollutans {
+          font-size: 60px;
+        }
+        .pm25-img {
+          width: 100px;
+        }
+        .pm25-text {
+          font-size: 70px;
+        }
+        .text-which-pm25 {
+          font-size: 90px;
+        }
+        .date-pm25 {
+          font-size: 100px;
+        }
+        .date-pm10 {
+          font-size: 100px;
+        }
+        .square-pm25 {
+          width: 450px;
+        }
+        .square-pm25-yellow {
+          width: 450px;
+        }
+        .grey-square {
+          height: 600px;
+        }
+
+        
+      }
+      @media (max-width:496px) {
+        .pm25-img {
+          width: 90px;
+        }
+        .pm25-text {
+          font-size: 50px;
+        }
+        .date-pm25 {
+          font-size: 80px;
+        }
+        .date-pm10 {
+          font-size: 80px;
+        }
+        .text-which-pm25 {
+          font-size: 70px;
+        }
+        .square-pm25 {
+          height: 100px;
+          width: 350px;
+          margin-top: -105px;
+        }
+        .square-pm25-yellow {
+          height: 100px;
+          width: 380px;
+          margin-top: -105px;
+        }
+        .grey-square {
+          height: 530px;
+        }
+      }
+
+      @media (max-width:425px) {
+        .pm25-img {
+          width: 70px;
+        }
+        .pm25-text {
+          font-size: 50px;
+        }
+        .date-pm10 {
+          font-size: 60px;
+        }
+        .date-pm25 {
+          font-size: 60px;
+        }
+        .text-which-pm25 {
+          font-size: 50px;
+        }
+        .square-pm25 {
+          height: 70px;
+          width: 300px;
+          margin-top: -78px;
+        }
+        .square-pm25-yellow {
+          height: 70px;
+          width: 300px;
+          margin-top: -78px;
+        }
+      }
+
+      @media (max-width:346px) {
+        .square-pm25 {
+          width: 260px;
+        }
+        .square-pm25-yellow {
+          width: 270px;
+        }
+      }
+
+    </style>
+    <style>
+      .air-pollution-defending {
+        font-size: 50px;
+        margin-top: 100px;
+      }
+      .air-pollution-defending-square {
+        background-color: rgb(231, 230, 230);
+        height: 300px; 
+        width: 100%; 
+        border-radius: 10px;
+      }
+      .air-quality-face-1 {
+        width: 180px;
+        margin-top: 10px;
+        
+      }
+      .air-quality-level-1 {
+        width: 200px;
+        height: 250px;
+        background-color: rgba(20, 255, 129, 1);
+        border-radius: 10px;
+        margin-top: 20px;
+        
+      }
+      
+      .square-text-level-1 {
+        width: 700px;
+        height: 190px;
+        background-color: rgb(20, 255, 129);
+        border-radius: 10px;
+        margin-top: 20px;
+      }
+      .air-quality-level-2 {
+        width: 200px;
+        height: 250px;
+        background-color: rgb(255, 237, 0);
+        border-radius: 10px;
+        margin-top: 20px;
+        
+      }
+      .square-text-level-2 {
+        width: 700px;
+        height: 240px;
+        background-color: rgb(255, 237, 0);
+        border-radius: 10px;
+        margin-top: 20px;
+      }
+      .text-air-quality-level-2-doing {
+        color: rgb(210, 195, 0);
+        font-size: 32px;
+        margin-top: 20px;
+        
+      }
+      .text-air-quality-level-2-example {
+        color: rgb(210, 195, 0);
+        font-size: 32px;
+        
+        
+      }
+      .text-air-quality-level-1-doing {
+        color: rgb(26, 150, 85);
+        font-size: 30px;
+        margin-top: 20px;
+        
+        
+      }
+      .text-air-quality-level-1-example {
+        color: rgb(26, 150, 85);
+        font-size: 30px;
+
+      }
+      .air-quality-level-3{
+        width: 200px;
+        height: 250px;
+        background-color: #FFBE49;
+        border-radius: 10px;
+        margin-top: 20px;
+      }
+      .square-text-level-3{
+        color: #FFBE49;
+        width: 700px;
+        height: 440px;
+        border-radius: 10px;
+        
+      }
+      .text-air-quality-level-3-doing{
+        color: #D28700;
+        font-size: 30px;
+      }
+      .text-air-quality-level-3-example{
+        color: #D28700;
+        font-size: 30px;
+      }
+    </style>
+    <style>
+      @media (max-width:1201px) {
+       .air-quality-level-2 {
+        width: 170px;
+        height: 220px;
+       }
+       .air-quality-face-1 {
+        width: 150px;
+       } 
+       .text-air-quality-level-2-doing {
+        font-size: 28px;
+       }
+       .text-air-quality-level-2-example{
+        font-size: 28px;
+       }
+       .square-text-level-2 {
+        width: 660px;
+        height: 200px;
+       }
+       .air-quality-level-1 {
+        width: 170px;
+        height: 200px;
+       }
+       
+       .text-air-quality-level-1-doing {
+        font-size: 28px;
+       }
+       .text-air-quality-level-1-example{
+        font-size: 28px;
+       }
+       .square-text-level-1 {
+        width: 660px;
+        height: 180px;
+       }
+       .air-pollution-defending-square {
+        height: 240px;
+       }
+      }
+      @media (max-width:992px) {
+        .air-quality-face-1 {
+          width: 120px;
+        }
+        .air-quality-level-1 {
+          width: 140px;
+          height: 170px;
+        }
+        .text-air-quality-level-1-doing {
+          font-size: 22px;
+        }
+        .text-air-quality-level-1-example {
+          font-size: 22px;
+        }
+        .square-text-level-1 {
+          width: 420px;
+          height: 160px;
+        }
+        .air-pollution-defending-square {
+          height: 210px;
+        }
+        .air-pollution-defending {
+          font-size: 40px;
+        }
+        .air-quality-face-2 {
+          width: 120px;
+        }
+        .air-quality-level-2 {
+          width: 140px;
+          height: 170px;
+        }
+        .text-air-quality-level-2-doing {
+          font-size: 18px;
+        }
+        .text-air-quality-level-2-example {
+          font-size: 18px;
+        }
+        .square-text-level-2 {
+          width: 420px;
+          height: 160px;
+        }
+        .air-pollution-defending-square {
+          height: 210px;
+        }
+        .air-pollution-defending {
+          font-size: 40px;
+        }
+
+
+      }
+      @media (max-width:768px) {
+        .air-quality-face-1 {
+          width: 90px;
+        }
+        .air-quality-level-1 {
+          width: 110px;
+          height: 130px;
+        }
+        .text-air-quality-level-1-doing {
+          font-size: 16px;
+        }
+        .text-air-quality-level-1-example {
+          font-size: 16px;
+        }
+        .square-text-level-1 {
+          width: 260px;
+          height: 120px;
+        }
+        .air-pollution-defending-square {
+          height: 170px;
+        }
+        .air-pollution-defending {
+          font-size: 30px;
+        }
+        .air-quality-level-2 {
+          width: 100px;
+          height: 120px;
+        }
+        .text-air-quality-level-2-doing {
+          font-size: 14px;
+          margin-top: 5px;
+        }
+        .text-air-quality-level-2-example {
+          font-size: 14px;
+        }
+        .square-text-level-2 {
+          height: 120px;
+          width: 280px;
+        }
+        
+      }
+      @media (max-width:500px) {
+        .air-quality-face-1 {
+          width: 80px;
+        }
+        .air-quality-level-1 {
+          width: 90px;
+          height: 110px;
+        }
+        .text-air-quality-level-1-doing {
+          font-size: 13px;
+          margin-top: 8px;
+        }
+        .text-air-quality-level-1-example {
+          font-size: 13px;
+        }
+        .square-text-level-1 {
+          width: 210px;
+          height: 100px;
+        }
+        .air-pollution-defending {
+          font-size: 20px;
+        }
+        .air-pollution-defending-square {
+          height: 160px;
+        }
+      }
+      
+      @media (max-width:453px) {
+        .square-text-level-1 {
+          margin-left: 20px;
+        }
+        
+      }
+      @media (max-width:429px) {
+        .text-air-quality-level-2-doing {
+          font-size: 12px;
+        }
+        .text-air-quality-level-2-example {
+          font-size: 12px;
+        }
+        .square-text-level-2 {
+          height: 110px;
+          width: 220px;
+          margin-left: 15px;
+        }
+      }
+      @media (max-width:375px) {
+        .air-quality-face-1 {
+          width: 60px;
+        }
+        .air-quality-level-1 {
+          width: 80px;
+          height: 90px;
+        }
+        .text-air-quality-level-1-doing {
+          font-size: 10px;
+        }
+        .text-air-quality-level-1-example {
+          font-size: 10px;
+        }
+        .square-text-level-1 {
+          height: 80px;
+          width: 160px;
+        }
+        .air-pollution-defending-square {
+          height: 130px;
+        }
+        .air-quality-level-2 {
+          width: 80px;
+          height: 90px;
+        }
+        .text-air-quality-level-2-doing {
+          font-size: 9px;
+        }
+        .text-air-quality-level-2-example {
+          font-size: 9px;
+        }
+        .square-text-level-2 {
+          height: 90px;
+          width: 170px;
+        }
+
+
+      }
+    </style>
+    <style>
+      
+    </style>
+  
+  </head>
+  <body>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+      crossorigin="anonymous"
+    ></script>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container">
+        <a class="navbar-brand p-0" href="#">
+          <img
+            src="{% static 'air_quality_logo.png' %}"
+            width="50"
+            alt="logo"
+          />
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="">Home page</a>
+            </li>
+             
+            <li class="nav-item">
+              <a class="nav-link " href="weather-english">Weather</a>
+            </li>
+            <li class="nav-item dropdown ">
+              <a class="nav-link dropdown-toggle " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Language
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="/">Қазақша</a></li>
+                <li><a class="dropdown-item" href="index-russian">Русский</a></li>
+                <li><a class="dropdown-item" href="">English</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container">  
+      {% if aqi_data <= 50 %}   
+        <div class="square my-3" ></div>       
+        <div class="other_square ">
+          <h1 class="text-style">{{aqi_data}}</h1>
+          <h1 class="aqi-text">AQI</h1>
+          <h1  class="us-text">US</h1>     
+        </div>
+        <h1 class="text-air_quality">Air quality in Atyrau</h1>
+        <h3 class="date">{{day}}:{{month}}:{{year}}</h3>
+        <h3 class="time">{{hour}}:{{minute}}</h3>
+        <h1 class="weather">Good</h1>
+      {% endif %}
+      {% if aqi_data <= 100 and aqi_data >= 51 %}
+        <div class="square-yellow my-3" ></div>       
+        <div class="other_square-yellow ">
+          <h1 class="text-style">{{aqi_data}}</h1>
+          <h1 class="aqi-text">AQI</h1>
+          <h1  class="us-text">US</h1>     
+        </div>
+        <h1 class="text-air_quality">Air quality in Atyrau</h1>
+        <h3 class="date">{{day}}:{{month}}:{{year}}</h3>
+        <h3 class="time">{{hour}}:{{minute}}</h3>
+        <h1 class="weather">Moderate</h1>
+      {% endif %}
+      {% if aqi_data <= 150 and aqi_data >= 101 %}
+        <div class="square-orange my-3" ></div>       
+        <div class="other_square-orange ">
+          <h1 class="text-style">{{aqi_data}}</h1>
+          <h1 class="aqi-text">AQI</h1>
+          <h1  class="us-text">US</h1>     
+        </div>
+        <h1 class="text-air_quality">Air quality in Atyrau</h1>
+        <h3 class="date">{{day}}:{{month}}:{{year}}</h3>
+        <h3 class="time">{{hour}}:{{minute}}</h3>
+        <h1 class="weather-orange">Unhealthy for Sensitive Group</h1>
+      {% endif %}
+      {% if aqi_data <= 200 and aqi_data >= 151 %}
+        <div class="square-red my-3" ></div>       
+          <div class="other_square-red ">
+            <h1 class="text-style">{{aqi_data}}</h1>
+            <h1 class="aqi-text">AQI</h1>
+            <h1  class="us-text">US</h1>     
+          </div>
+          <h1 class="text-air_quality-red">Air quality in Atyrau</h1>
+          <h3 class="date-red">{{day}}:{{month}}:{{year}}</h3>
+          <h3 class="time-red">{{hour}}:{{minute}}</h3>
+          <h1 class="weather-red">Unhealthy</h1>
+      {% endif %}
+      
+      
+
+    </div>
+    <div class="container">
+      <h1 class="text-pollutans ">Pollutants</h1>
+      <div class="grey-square">  
+        {% if pm25 <= 50 %}   
+        <div class="container">
+          <div class="row">
+            <div class="col-md-2 col-sm-2">
+              <img src="{% static 'pm10_дым.png' %}" alt="smoke" width="130" class="pm25-img">
+
+            </div>
+            <div class="col-md-2 col-sm-2">
+              <h1 class="pm25-text">PM2.5:</h1>
+            </div>
+
+          </div>
+          
+          <div class="row">
+            <div class="col-md-2">
+              <h1 class="date-pm25">{{pm25}}</h1>
+            </div>
+            <div class="col-md-2" >
+            
+              <h1 class="text-which-pm25">Good</h1>
+            </div>
+
+
+          </div>
+          
+          <div class="square-pm25"></div>
+          
+
+        </div>
+          
+          
+      
+        {% endif %}
+        {% if pm25 <= 100 and pm25 >= 51 %}   
+          <div class="container">
+            <div class="row">
+              <div class="col-2">
+                <img src="{% static 'pm10_дым.png' %}" alt="smoke" width="130" class="pm25-img">
+
+              </div>
+              <div class="col-2">
+                <h1 class="pm25-text">PM2.5:</h1>
+              </div>
+
+            </div>
+            
+            <div class="row">
+              <div class="col-2">
+                <h1 class="date-pm25">{{pm25}}</h1>
+              </div>
+              <div class="col-2" >
+              
+                <h1 class="text-which-pm25">Moderate</h1>
+              </div>
+
+
+            </div>
+            
+            <div class="square-pm25-yellow"></div>
+            
+
+          </div> 
+            
+        {% endif %}
+        {% if pm25 <= 150 and pm25 >= 101 %}   
+          <div class="container">
+            <div class="row">
+              <div class="col-2">
+                <img src="{% static 'pm10_дым.png' %}" alt="smoke" width="130" class="pm25-img">
+
+              </div>
+              <div class="col-2">
+                <h1 class="pm25-text">PM2.5:</h1>
+              </div>
+
+            </div>
+            
+            <div class="row">
+              <div class="col-md-2">
+                <h1 class="date-pm25">{{pm25}}</h1>
+              </div>
+              <div class="col-10" >
+              
+                <h1 class="text-which-pm25-orange">Unhealthy for Sensitive Group</h1>
+              </div>
+
+
+            </div>
+            
+            <div class="square-pm25-orange"></div>
+            
+
+          </div>
+          
+            
+            
+          
+        {% endif %}
+        {% if pm25 <= 200 and pm25 >= 151 %}   
+          <div class="container">
+            <div class="row">
+              <div class="col-2">
+                <img src="{% static 'pm10_дым.png' %}" alt="smoke" width="130" class="pm25-img">
+
+              </div>
+              <div class="col-2">
+                <h1 class="pm25-text">PM2.5:</h1>
+              </div>
+
+            </div>
+            
+            <div class="row">
+              <div class="col-2">
+                <h1 style="font-size: 120px;color: white;">{{pm25}}</h1>
+              </div>
+              <div class="col-9" >
+              
+                <h1 class="text-which-pm25-red" >Unhealthy</h1>
+              </div>
+
+
+            </div>
+            
+            <div class="square-pm25-red"></div>
+            
+
+          </div>
+
+        {% endif %}
+        <div class="container" style="margin-top: 60px;">
+          {% if pm10 <= 50 %}
+            <div class="row">
+              <div class="col-2">
+                <img src="{% static 'pm10_дым.png' %}" alt="smoke" width="130" class="pm25-img">
+
+              </div>
+              <div class="col-2">
+                <h1 class="pm25-text">PM10:</h1>
+              </div>
+
+            </div>
+            
+            <div class="row">
+              <div class="col-2">
+                <h1 class="date-pm10">{{pm10}}</h1>
+              </div>
+              <div class="col-2" >
+              
+                <h1 class="text-which-pm25">Good</h1>
+              </div>
+
+
+            </div>
+            
+            <div class="square-pm25"></div>
+            
+          {% endif %}
+          {% if pm10 <= 100  and pm10 >= 51%}
+            <div class="row">
+              <div class="col-2">
+                <img src="{% static 'pm10_дым.png' %}" alt="smoke" width="130" class="pm25-img">
+
+              </div>
+              <div class="col-2">
+                <h1 class="pm25-text">PM10:</h1>
+              </div>
+
+            </div>
+            
+            <div class="row">
+              <div class="col-2">
+                <h1 class="date-pm10">{{pm10}}</h1>
+              </div>
+              <div class="col-2" >
+              
+                <h1 class="text-which-pm25">Moderate</h1>
+              </div>
+
+
+            </div>
+            
+            <div class="square-pm25-yellow"></div>
+            
+          {% endif %}
+          {% if pm10 <= 150  and pm10 >= 101%}
+            <div class="row">
+              <div class="col-2">
+                <img src="{% static 'pm10_дым.png' %}" alt="smoke" width="130" class="pm25-img">
+
+              </div>
+              <div class="col-2">
+                <h1 class="pm25-text">PM10:</h1>
+              </div>
+
+            </div>
+            
+            <div class="row">
+              <div class="col-2">
+                <h1 class="date-pm10">{{pm10}}</h1>
+              </div>
+              <div class="col-10" >
+              
+                <h1 class="text-which-pm25-orange">Сезімтал топтарға қауыпті</h1>
+              </div>
+
+
+            </div>
+            
+            <div class="square-pm25-orange"></div>
+          
+        {% endif %}
+        {% if pm10 <= 200  and pm10 >= 151%}
+          <div class="row">
+            <div class="col-2">
+              <img src="{% static 'pm10_дым.png' %}" alt="smoke" width="130" class="pm25-img">
+
+            </div>
+            <div class="col-2">
+              <h1 class="pm25-text">PM10:</h1>
+            </div>
+
+          </div>
+          
+          <div class="row">
+            <div class="col-2">
+              <h1 style="font-size: 120px; color: white;">{{pm10}}</h1>
+            </div>
+            <div class="col-10" >
+        
+              <h1 class="text-which-pm25-red" >Unhealthy</h1>
+            </div>
+
+
+          </div>
+          
+          <div class="square-pm25-red"></div>
+          
+        {% endif %}
+        </div>
+      </div>
+    
+    </div>
+    <div class="container">
+      <h1 class="air-pollution-defending">How to protect yourself from air pollution in Atyrau?</h1>
+      <div class="air-pollution-defending-square">
+        {% if aqi_data <= 50 %}
+          <div class="container">
+            <div class="row">
+              <div class="col-3">
+                <div class="air-quality-level-1">
+                  <div class="container">
+                    <img src="{% static 'air_quality_faces/face1.png' %}" alt="air-quality-face-1" class="air-quality-face-1"> 
+    
+                  </div>
+    
+                </div>
+              </div>
+              <div class="col">
+                <div class="square-text-level-1  ">
+                  <div class="container">
+                    <div class="row row-cols-1">
+                      <div class="col">
+                        <h1 class="text-air-quality-level-1-doing">
+                          Action: ventilate the room.
+                        </h1>
+                      </div>
+                      <div class="col">
+                        <h1 class="text-air-quality-level-1-example">
+                          Example: Open windows and doors to improve indoor air circulation.
+                        </h1>
+                      </div>
+                    </div>
+                  </div>
+                  
+                </div>
+                
+              </div>
+              
+            </div>
+            
+          </div>
+        {% endif %}
+        {% if aqi_data <= 100 and aqi_data >= 51%}
+          <div class="container">
+            <div class="row">
+              <div class="col-3">
+                <div class="air-quality-level-2">
+                  <div class="container">
+                    <img src="{% static 'air_quality_faces/face2.png' %}" alt="air-quality-face-2" class="air-quality-face-1"> 
+    
+                  </div>
+    
+                </div>
+              </div>
+              <div class="col">
+                <div class="square-text-level-2  ">
+                  <div class="container">
+                    <div class="row row-cols-1">
+                      <div class="col">
+                        <h1 class="text-air-quality-level-2-doing">
+                          Action: If you are sensitive, avoid physical activity outdoors.
+                        </h1>
+                      </div>
+                      <div class="col">
+                        <h1 class="text-air-quality-level-2-example">
+                          Example: Limit walking or exercising outside, especially in the morning and evening.
+                        </h1>
+                      </div>
+                    </div>
+                  </div>
+                  
+                </div>
+                
+              </div>
+              
+            </div>
+            
+          </div>
+        {% endif %}
+        {% if aqi_data <= 150 and aqi_data >= 101 %}
+          <div class="container">
+            <div class="row">
+              <div class="col-3">
+                <div class="air-quality-level-3">
+                  <div class="container">
+                    <img src="{% static 'air_quality_faces/face3.png' %}" alt="air-quality-face-3" class="air-quality-face-1"> 
+    
+                  </div>
+    
+                </div>
+              </div>
+              <div class="col">
+                <div class="square-text-level-3">
+                  <div class="container">
+                    <div class="row row-cols-1">
+                      <div class="col">
+                        <h1 class="text-air-quality-level-3-doing">
+                          Action: Limit long-term outdoor exposure for everyone, especially children, the elderly and people with chronic diseases.
+                        </h1>
+                      </div>
+                      <div class="col">
+                        <h1 class="text-air-quality-level-3-example">
+                          Example: If possible, stay indoors and cover your face when you go outside.
+                        </h1>
+                      </div>
+                    </div>
+                  </div>
+                  
+                </div>
+                
+              </div>
+              
+            </div>
+            
+          </div>
+        {% endif %}
+      </div>
+    </div>
+   
+  <body>
+   
+</html>
