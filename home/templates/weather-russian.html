@@ -382,34 +382,42 @@
           <h1 class="temp-data">{{temp}}</h1>
         </div>
         <div class="col">
-          {% if icon == '03d' %}
+          {% if icon == '03d' or icon == '03n' %}
             <img src="{% static 'weather_logos/немного облачно.png'%}" alt="немного облачно" width="180" class="description-img-data">
           {% endif %}
           {% if icon == '01d' %}
             <img src="{% static 'weather_logos/Солнечно.png' %}" alt="Солнечно" width="180" class="description-img-data">
           {% endif %}
+          {% if icon == '01n' %}
+            <img src="{% static 'weather_logos/Луна.png' %}" alt="Солнечно" width="180" class="description-img-data">
+          {% endif %}
           {% if icon == '02d' %}
             <img src="{% static 'weather_logos/облачно с происнениями.png' %}" alt="Солнечно с происненеями" width="180" class="description-img-data">
           {% endif %}
-          {% if icon == '04d' %}
+          {% if icon == '02n' %}
+            <img src="{% static 'weather_logos/немного облачно ночь.png' %}" alt="Солнечно с происненеями" width="180" class="description-img-data">
+          {% endif %}
+          {% if icon == '04d' or icon == '04n' %}
             <img src="{% static 'weather_logos/Облачно.png' %}" alt="Облачно" width="180" class="description-img-data">
           {% endif %}
-          {% if icon == '09d' %}
+          {% if icon == '09d' or icon == '09n'  %}
             <img src="{% static 'weather_logos/дождь.png' %}" alt="Ливень" width="180" class="description-img-data">
           {% endif %}
           {% if icon == '10d' %}
             <img src="{% static 'weather_logos/дождь с произнеями.png' %}" alt="Дождь" width="180" class="description-img-data">
           {% endif %}
-          {% if icon == '11d' %}
+          {% if icon == '10n' %}
+            <img src="{% static 'weather_logos/дождь с луной.png' %}" alt="Дождь" width="180" class="description-img-data">
+          {% endif %}
+          {% if icon == '11d' or icon == '11n' %}
             <img src="{% static 'weather_logos/гроза.png' %}" alt="Гроза" width="180" class="description-img-data">
           {% endif %}
-          {% if icon == '13d' %}
+          {% if icon == '13d' or icon == '13n' %}
             <img src="{% static 'weather_logos/Снег.png' %}" alt="Снег" width="180" class="description-img-data">
           {% endif %}
-          {% if icon == '50d' %}
+          {% if icon == '50d' or icon == '50n' %}
             <img src="{% static 'weather_logos/Туман.png' %}" alt="Туман" width="180" class="description-img-data">
           {% endif %}
-
         </div>
       </div>
       <h1 class="description-data">{{description}}</h1>
