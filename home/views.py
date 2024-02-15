@@ -70,6 +70,7 @@ def weather(request):
     sunset_data = datetime.fromtimestamp(json_data_weather["sys"]["sunset"])
     sunset_data_2 = sunset_data + timedelta(hours=5)
     sunset = sunset_data_2.strftime("%H:%M")
+    icon_name = json_data_weather["weather"][0]["icon"]
 
     description_text = json_data_weather["weather"][0]["description"]
     # ауа райы болжамының ақпаратарын анықтау
@@ -240,6 +241,7 @@ def weather(request):
             "humidity": humidity,
             "pressure": pressure,
             "description": description,
+            'icon': icon_name,
             "sunrise": sunrise,
             "sunset": sunset,
             "tomorrow": tomorrow,
