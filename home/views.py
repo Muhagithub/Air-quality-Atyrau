@@ -22,7 +22,7 @@ def index(request):
     if minute <= 9:
         minute = "0" + str(minute)
 
-    url_aqi = "https://api.waqi.info/feed/A217510/?token=6ed024b9165f16b154982ceca71f3c108a7e6047"
+    url_aqi = "https://api.waqi.info/feed/A401917/?token=6ed024b9165f16b154982ceca71f3c108a7e6047"
 
     responce = requests.get(url_aqi)
 
@@ -341,7 +341,7 @@ def russian(request):
     if minute <= 9:
         minute = "0" + str(minute)
 
-    url_aqi = "https://api.waqi.info/feed/A217510/?token=6ed024b9165f16b154982ceca71f3c108a7e6047"
+    url_aqi = "https://api.waqi.info/feed/A401917/?token=6ed024b9165f16b154982ceca71f3c108a7e6047"
 
     responce = requests.get(url_aqi)
 
@@ -380,7 +380,7 @@ def english(request):
     if minute <= 9:
         minute = "0" + str(minute)
 
-    url_aqi = "https://api.waqi.info/feed/A217510/?token=6ed024b9165f16b154982ceca71f3c108a7e6047"
+    url_aqi = "https://api.waqi.info/feed/A401917/?token=6ed024b9165f16b154982ceca71f3c108a7e6047"
 
     responce = requests.get(url_aqi)
 
