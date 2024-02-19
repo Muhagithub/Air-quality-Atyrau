@@ -227,10 +227,11 @@ def weather(request):
 
     # ауа райына + немесе - белгілерін қою
     if temp < 0:
-        temp_data = "-" + str(temp)
+        temp_data = "" + str(temp)
 
     else:
         temp_data = "+" + str(temp)
+
 
     return render(
         request,
