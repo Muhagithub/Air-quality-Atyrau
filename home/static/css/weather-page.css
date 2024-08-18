@@ -1,0 +1,50 @@
+.weather_forecast {
+  margin-top: 100px;
+}
+
+.title_forecast {
+  font-size: 50px;
+}
+
+.subtitle_forecast {
+  margin-top: 20px;
+  font-size: 30px;
+}
+
+.forecast_wrapper {
+  margin-top: 40px;
+}
+
+.forecast_temp {
+  font-size: 40px;
+  font-weight: 500;
+}
+
+.forecast_item {
+  margin-top: 10px;
+}
+
+.forecast_wind_wrapper {
+  margin-top: 10px;
+}
+
+.forecast_wind {
+  font-size: 30px;
+  font-weight: 500;
+  margin-left: 10px;
+}
+
+.forecast_img {
+  width: 80px;
+}
+
+.forecast_temp_wrapper {
+  display: flex;
+  align-items: flex-end;
+}
+.forecast_wind_img {
+  width: 30px;
+}
+.forecast_wind_wrapper {
+  display: flex;
+}
